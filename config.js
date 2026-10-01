@@ -4,6 +4,7 @@
  * (URL https://buy.stripe.com/...). Les valeurs null désactivent le paiement.
  */
 window.ECRIN_CONFIG = {
+  inquiryRecipient: 'sardet.camille@gmail.com',
   paymentLinks: {
     'table-basse-vert': null,
     'table-basse-bleu': null,

@@ -20,7 +20,7 @@ function renderProducts() {
   document.querySelector('[data-results-count]').textContent = `${visible.length} ${visible.length === 1 ? 'variante affichée' : 'variantes affichées'} · prix sur demande`;
   grid.innerHTML = visible.map(item => `
     <article class="product-card">
-      <div class="product-image">
+      <div class="product-image${item.caption ? ' product-image-render' : ''}">
         <img src="${item.image}" alt="${item.alt}" loading="lazy">
         <span class="product-tag">${item.kindLabel} · ${item.colorLabel}</span>
         <button class="product-open" type="button" data-product-id="${item.id}" aria-label="Voir la fiche : ${item.kindLabel}, ${item.colorLabel}">Voir la fiche</button>

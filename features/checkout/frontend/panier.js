@@ -42,14 +42,11 @@ function safePaymentLink(id) {
   }
 }
 
-function buildQuoteUrl() {
-  const lines = Object.entries(cart).map(([id, quantity]) => {
+function selectedPieces() {
+  return Object.entries(cart).map(([id, quantity]) => {
     const product = getProduct(id);
-    return `• ${product.kindLabel} — ${product.colorLabel} × ${quantity}`;
+    return `${product.kindLabel} — ${product.colorLabel} × ${quantity}`;
   }).join('\n');
-  const subject = 'Demande de disponibilité — Écrin des Nuages';
-  const body = `Bonjour Anaïs,\n\nJe souhaiterais connaître le prix et la disponibilité des pièces suivantes :\n\n${lines}\n\nMerci !`;
-  return `mailto:af@anaisfernon.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function renderCart(restoreFocus = null) {
@@ -83,11 +80,10 @@ function renderCart(restoreFocus = null) {
     </article>`;
   }).join('');
 
-  document.querySelector('[data-quote-link]').href = buildQuoteUrl();
   const stripeActive = entries.some(([id]) => safePaymentLink(id));
   document.querySelector('[data-stripe-note]').textContent = stripeActive
     ? 'Vous pouvez régler une pièce depuis sa ligne, ou demander les disponibilités de toute la sélection.'
-    : 'Votre message préparera une demande de prix et de disponibilité, sans engagement.';
+    : 'Envoyez votre demande et vos coordonnées directement depuis le site, sans engagement.';
 
   if (restoreFocus) {
     const [id, action] = restoreFocus;
@@ -117,7 +113,7 @@ document.querySelector('[data-close-cart]').addEventListener('click', () => cart
 document.querySelector('[data-close-cart-link]').addEventListener('click', () => cartDialog.close());
 cartDialog.addEventListener('close', () => {
   syncDialogState();
-  if (cartReturnFocus?.isConnected) cartReturnFocus.focus();
+  if (!document.querySelector('dialog[open]') && cartReturnFocus?.isConnected) cartReturnFocus.focus();
   cartReturnFocus = null;
 });
 cartDialog.addEventListener('click', event => {
@@ -162,3 +158,9 @@ window.addEventListener('storage', event => {
 });
 
 renderCart();
+
+document.querySelector('[data-quote-link]').addEventListener('click', () => {
+  const pieces = selectedPieces();
+  cartDialog.close();
+  window.dispatchEvent(new CustomEvent('ecrin:inquiry', { detail: { pieces, returnFocus: document.querySelector('[data-open-cart]') } }));
+});
