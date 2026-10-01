@@ -1,7 +1,8 @@
 // Chaque slide tient dans la hauteur visible. Si son contenu dépasse encore après la mise en page
 // fluide, il est réduit pas à pas ; en dernier recours la slide reprend une hauteur libre.
+// Sur téléphone, le contenu n’est jamais réduit : la lisibilité passe avant la hauteur d’écran.
 const slides = [...document.querySelectorAll('.slide')];
-const minimum = 0.6;
+const phone = window.matchMedia('(max-width: 760px)');
 
 // Un contenu trop haut peut déborder d’une grille interne sans allonger la slide :
 // chaque conteneur flexible ou en grille est donc contrôlé.
@@ -10,13 +11,15 @@ function overflows(slide) {
   for (const element of slide.querySelectorAll('div, section, figure, article, dl')) {
     // Tolérance : les jambages des titres dépassent leur ligne de quelques pixels.
     if (element.scrollHeight <= element.clientHeight + 6) continue;
-    const { display, overflowY } = getComputedStyle(element);
-    if (overflowY === 'visible' && /flex|grid/.test(display)) return true;
+    // Les bandes à défilement horizontal rognent en hauteur : elles comptent aussi.
+    const { display, overflowX, overflowY } = getComputedStyle(element);
+    if ((overflowY === 'visible' || overflowX === 'auto') && /flex|grid/.test(display)) return true;
   }
   return false;
 }
 
 function fitSlides() {
+  const minimum = phone.matches ? 1 : 0.6;
   for (const slide of slides) {
     let fit = 1;
     slide.classList.remove('is-free');

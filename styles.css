@@ -705,10 +705,12 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
   gap: clamp(14px, 6vw, 88px);
 }
 .team-photo { position: relative; align-self: center; display: flex; flex-direction: column; min-height: 0; max-height: 100%; }
-.team-photo img { flex: 0 1 auto; width: 100%; min-height: 120px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 70%; }
+/* Le cadrage reste centré sur les trois visages ; la hauteur plancher empêche un bandeau trop
+   plat qui les couperait. */
+.team-photo img { flex: 0 1 auto; width: 100%; min-height: min(16vw, 210px); aspect-ratio: 4 / 5; object-fit: cover; object-position: 55% 58%; }
 .team-photo figcaption {
   position: absolute;
-  right: 12px;
+  left: 12px;
   bottom: 12px;
   padding: 5px 8px;
   background: var(--paper);
@@ -1178,10 +1180,11 @@ dialog:not(.gallery-dialog) {
   .material { grid-template-columns: 1fr; grid-template-rows: auto minmax(150px, 1fr); }
   .detail-images { align-self: stretch; }
   .detail-images img { flex: 1 1 0; height: 0; aspect-ratio: auto; }
-  .team-body { grid-template-columns: 1fr; grid-template-rows: minmax(120px, 1fr) auto; }
+  .team-body { container-type: inline-size; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
   .team-names article { padding-block: 8px; }
-  .team-photo { align-self: stretch; }
-  .team-photo img { flex: 1 1 0; height: 0; aspect-ratio: auto; }
+  .team-photo { align-self: stretch; min-height: 40cqw; }
+  /* La photographie remplit la hauteur libre sans jamais devenir plus plate que 5:2. */
+  .team-photo img { flex: 1 1 0; height: 0; min-height: 40cqw; max-height: 125vw; aspect-ratio: auto; }
 
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .footer-credits { grid-column: 1 / -1; text-align: left; }
@@ -1192,6 +1195,8 @@ dialog:not(.gallery-dialog) {
   .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
   .material { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
   .team-body { grid-template-columns: minmax(0, .6fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+  .team-photo { align-self: center; min-height: 14cqw; }
+  .team-photo img { min-height: 14cqw; max-height: 52vw; }
   .story { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); }
 }
 
@@ -1201,28 +1206,83 @@ dialog:not(.gallery-dialog) {
   .cart-trigger, .menu-toggle { font-size: 11px; }
   .cart-count { width: 22px; height: 22px; margin-left: 6px; }
 
-  .section-note { font-size: 14px; line-height: 1.55; }
-  .hero-actions .button-dark { flex: 1 1 100%; }
-  .reuse-band { display: grid; grid-template-columns: auto auto; justify-content: space-between; gap: 6px 16px; font-size: 11px; letter-spacing: .12em; }
+  /* Lecture d’abord : les tailles de texte ne descendent plus, les images gardent une hauteur
+     plancher. Une slide trop chargée pour l’écran reprend une hauteur libre (slides.js). */
+  .slide { --pad: clamp(24px, 4.5vh, 40px); }
+  h2, .story-copy h2 { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.04; }
+  .section-heading { gap: 12px; margin-bottom: 20px; }
+  .section-note { font-size: 15.5px; line-height: 1.6; }
+  .section-foot { margin-top: 14px; padding-top: 10px; line-height: 1.6; }
 
-  .product-caption { grid-template-columns: 1fr; gap: 4px; padding-inline: 12px; }
-  .product-title { font-size: 18px; }
-  .product-sub { font-size: 12px; }
-  .product-price { padding-top: 2px; font-size: 10px; }
-  .product-cta { min-height: 44px; font-size: 10.5px; letter-spacing: .06em; }
-  .product-tag { left: 8px; top: 8px; padding: 5px 7px; font-size: 9.5px; }
+  .hero { grid-template-rows: auto minmax(220px, 1fr); gap: 24px; }
+  .hero h1 { font-size: clamp(42px, 12vw, 54px); margin: 18px 0 16px; }
+  .hero-intro { font-size: 17px; line-height: 1.55; }
+  /* Sur téléphone, l’accueil va à l’essentiel : le menu et le défilement mènent à la suite. */
+  .hero-actions { display: none; }
+  .reuse-band { display: grid; grid-template-columns: auto auto; justify-content: space-between; gap: 8px 16px; padding-block: 14px; font-size: 11.5px; letter-spacing: .12em; }
+
+  /* Collection, dessins, études et galerie défilent à l’horizontale : chaque vue garde une taille
+     lisible et la suivante dépasse du bord pour inviter au geste. */
+  .product-grid,
+  .technical-drawings,
+  .study-grid,
+  .photo-grid {
+    display: flex;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 2px var(--gutter) 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .product-grid::-webkit-scrollbar,
+  .technical-drawings::-webkit-scrollbar,
+  .study-grid::-webkit-scrollbar,
+  .photo-grid::-webkit-scrollbar { display: none; }
+  .product-grid > *,
+  .technical-drawings > *,
+  .study-grid > *,
+  .photo-grid > * { scroll-snap-align: start; }
+
+  .product-card { flex: 0 0 80%; }
+  .product-image { min-height: 260px; }
+  .product-caption { padding-inline: 16px; }
+  .product-title { font-size: 22px; }
   .spec-list div { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
 
-  .figures-list { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-inline: var(--gutter); }
-  .figures-list dt { font-size: clamp(22px, 6.4vw, 30px); }
+  .story-image { min-height: 320px; }
+  .story-copy > p:not(.eyebrow) { font-size: 16px; line-height: 1.65; margin-bottom: 14px; }
+  .figures-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; padding: 20px var(--gutter) 24px; }
+  .figures-list dt { font-size: clamp(24px, 6.8vw, 30px); }
+  .figures-list dd { font-size: 12px; letter-spacing: .06em; }
 
-  .technical-drawings { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); }
-  .study-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, minmax(0, 1fr)); }
-  .study-name { font-size: 15px; }
-  .study-name, .study-color { padding-inline: 10px; }
-  .study-color { margin-top: 1px; font-size: 10px; letter-spacing: .08em; }
-  .photo-caption { font-size: 12px; padding: 32px 10px 10px; }
+  .material { grid-template-rows: auto minmax(240px, 1fr); gap: 24px; }
+  .material-copy > p:not(.eyebrow) { font-size: 16px; line-height: 1.65; margin-bottom: 14px; }
+  .detail-images { gap: 12px; }
 
+  .technical-drawings figure { flex: 0 0 88%; }
+  .technical-drawings figcaption { padding: 12px 16px; font-size: 12px; line-height: 1.5; }
+
+  .study-card { flex: 0 0 68%; padding-bottom: 16px; }
+  .study-card img { min-height: 160px; }
+  .study-name { font-size: 19px; }
+
+  .photo-thumb { flex: 0 0 76%; min-height: 240px; }
+  .photo-thumb.is-wide, .photo-thumb.is-featured { flex-basis: 86%; }
+  .photo-caption { padding: 48px 14px 14px; font-size: 14px; opacity: 1; transform: none; }
+  .photo-number { left: 14px; top: 12px; font-size: 12px; }
+
+  .team-body { gap: 16px; }
+  .team-names article { padding-block: 12px; }
+  .team-names article > span { font-size: 12px; }
+  .team-names h3 { font-size: 25px; margin-top: 4px; }
+  .team-names a { font-size: 16px; }
+
+  .contact h2 { font-size: clamp(38px, 11vw, 52px); }
+  .contact-note { font-size: 15px; line-height: 1.6; }
   .contact .button-dark { width: 100%; max-width: 360px; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 12px; }
@@ -1258,6 +1318,10 @@ dialog:not(.gallery-dialog) {
   .gallery-arrow-prev { justify-self: end; margin-right: 20px; }
   .gallery-arrow-next { justify-self: start; margin-left: 20px; }
   .gallery-counter { align-self: center; }
+}
+
+@media (max-width: 760px) and (max-aspect-ratio: 4/3) {
+  .team-photo img { min-height: 220px; }
 }
 
 @media (max-width: 380px) {
