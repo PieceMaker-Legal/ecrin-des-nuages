@@ -1369,6 +1369,23 @@ dialog:not(.gallery-dialog) {
   pointer-events: none;
   animation: intro-out .4s ease 3.1s both;
 }
+.intro-title {
+  position: absolute;
+  top: clamp(24px, 9vh, 84px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.intro-title span:first-child {
+  font-size: .5em;
+  letter-spacing: .18em;
+  margin: 0 .34em;
+}
 .intro svg { width: min(72vw, 52vh, 380px); height: auto; overflow: visible; }
 .intro path { fill: none; stroke: #1d1d1b; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .intro-wall path, .intro-legs path { stroke-dasharray: 1; stroke-dashoffset: 1; }
