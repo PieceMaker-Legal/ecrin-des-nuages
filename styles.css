@@ -1058,9 +1058,12 @@ dialog::backdrop {
 
 /* ---------- Finitions verre : uniquement des effets, sans changement de géométrie ---------- */
 .product-card,
-.study-card,
 .technical-drawings figure {
   background: var(--glass-surface);
+  box-shadow: var(--glass-shadow);
+}
+.study-card {
+  background: #fff;
   box-shadow: var(--glass-shadow);
 }
 
