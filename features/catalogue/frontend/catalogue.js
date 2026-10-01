@@ -16,21 +16,19 @@ function specs(product) {
 }
 
 function renderProducts() {
-  grid.innerHTML = products.map((item, index) => `
-    <article class="piece">
-      <button class="piece-media" type="button" data-product-id="${item.id}" aria-label="Voir la fiche et les photographies : ${item.kindLabel}, ${item.colorLabel}">
+  grid.innerHTML = products.map(item => `
+    <article class="product-card">
+      <div class="product-image">
         <img src="${item.image}" srcset="${item.image.replace('assets/', 'assets/thumbs/')} 800w, ${item.image} 1200w" sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="1800" alt="${item.alt}" loading="lazy">
-        <span class="piece-count">${item.gallery.length} photographies</span>
-      </button>
-      <div class="piece-body">
-        <p class="eyebrow"><span class="swatch ${item.color}" aria-hidden="true"></span>${String(index + 1).padStart(2, '0')} · ${item.colorLabel}</p>
-        <h3 class="piece-title">${item.kindLabel}</h3>
-        <p class="piece-text">${item.description}</p>
-        <dl class="spec-list">${specs(item)}</dl>
-        <div class="piece-actions">
-          <button class="button-dark" type="button" data-quote-piece="${item.id}">Demander un devis <span aria-hidden="true">↗</span></button>
-          <button class="text-link" type="button" data-product-id="${item.id}">Voir la fiche</button>
+        <span class="product-tag">${item.gallery.length} photographies</span>
+      </div>
+      <div class="product-caption">
+        <div>
+          <h3 class="product-title"><button class="product-open" type="button" data-product-id="${item.id}" aria-haspopup="dialog">${item.kindLabel} <span aria-hidden="true">—</span> ${item.colorLabel}</button></h3>
+          <p class="product-sub"><span class="swatch ${item.color}" aria-hidden="true"></span>Verre récupéré · Nanterre</p>
         </div>
+        <span class="product-price">Sur demande</span>
+        <span class="product-cta" aria-hidden="true">Dimensions et devis <span>→</span></span>
       </div>
     </article>`).join('');
 }
@@ -91,10 +89,10 @@ document.querySelector('[data-gallery-prev]').addEventListener('click', () => { 
 document.querySelector('[data-gallery-next]').addEventListener('click', () => { galleryIndex = (galleryIndex + 1) % currentProduct.gallery.length; setGalleryImage(); });
 document.querySelector('[data-dialog-variants]').addEventListener('change', event => { if (event.target.matches('input')) updateProductContent(products.find(item => item.id === event.target.value)); });
 document.querySelector('[data-add-to-cart]').addEventListener('click', () => {
-  window.dispatchEvent(new CustomEvent('ecrin:add-to-cart', {detail: {productId: currentProduct.id, returnFocus: productReturnFocus}}));
+  window.dispatchEvent(new CustomEvent('ecrin:add-to-cart', {detail: {productId: currentProduct.id, returnFocus: productReturnFocus, keepQuantity: true}}));
   dialog.close();
   document.querySelector('[data-cart-dialog]').showModal();
   syncDialogState();
-  document.querySelector('[data-close-cart]').focus();
+  document.querySelector('[data-quote-link]').focus();
 });
 renderProducts();

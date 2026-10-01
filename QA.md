@@ -4,10 +4,11 @@
 
 La feuille de style a été réécrite en une seule passe (elle empilait plusieurs séries de correctifs), la page réorganisée et les contenus recalés sur les ressources.
 
-- Collection : les deux pièces sont présentées en grand, avec dimensions, matériaux, bouton de devis et accès à la fiche. Les filtres ont été retirés, ils n’avaient pas d’utilité pour deux pièces.
+- Collection : deux cartes entièrement cliquables. La fiche s’ouvre en fenêtre avec les dimensions, les matériaux et le bouton de demande de devis.
 - Le projet : repères chiffrés tirés du dossier de presse et du dossier technique (18 tours, 1973 – 1981, 1 607 logements, verre de 120 × 106 cm).
 - Dessins d’étude : libellés corrigés d’après la planche de collection (trois vues portaient une teinte ou un type erroné).
-- Galerie : 17 photographies, la photographie fournie en double n’apparaît plus qu’une fois. Vignettes allégées, ouverture plein écran, balayage tactile.
+- Galerie : mosaïque de 10 photographies avec une vue large et une vue mise en avant, filtres (en situation, détails, table basse, table haute), apparition en cascade, légende au survol, ouverture plein écran et balayage tactile.
+- Aucune photographie n’apparaît deux fois sur la page : celles de l’accueil, des cartes, du projet, du verre et de l’équipe ne sont pas reprises dans la galerie, et les deux fiches n’ont aucune photographie en commun.
 - En-tête fixe, pied de page complété, balises de partage, dimensions des images déclarées.
 - Une demande de devis répétée sur la même pièce n’ajoute plus un exemplaire à chaque clic.
 

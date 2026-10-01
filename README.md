@@ -35,7 +35,7 @@ L’épaisseur et le poids du verre ne sont pas rédigés dans le site : le doss
 
 ## Inventaire des ressources
 
-- Les 17 photographies de la galerie sont `assets/photo-1.webp` à `assets/photo-16.webp` et `assets/table-basse-collectif.webp`. Les deux fichiers sources `Table-Nuage-Basse.jpg` et `Table-Nuage-Basse-@collectiffeuilledesauge.jpg` sont identiques à l’octet près : la photographie n’apparaît qu’une fois, créditée au Collectif Feuille de Sauge.
+- Les 17 photographies du site sont `assets/photo-1.webp` à `assets/photo-16.webp` et `assets/table-basse-collectif.webp`. Chacune n’apparaît qu’une fois sur la page : la galerie montre les 10 qui ne servent pas déjà à l’accueil, aux cartes de la collection, au projet, au verre et à l’équipe. Les deux fichiers sources `Table-Nuage-Basse.jpg` et `Table-Nuage-Basse-@collectiffeuilledesauge.jpg` sont identiques à l’octet près : la photographie n’apparaît qu’une fois, créditée au Collectif Feuille de Sauge.
 - `assets/thumbs/` contient les mêmes photographies en 800 px de large, utilisées pour les vignettes et les petits écrans. `assets/partage.jpg` est l’image d’aperçu des liens partagés.
 - Les six rendus `assets/nuage-render-000.webp` à `assets/nuage-render-005.webp` apparaissent dans « La collection se dessine ». Leurs libellés suivent la planche de collection : tables basses à un et deux verres, tables hautes à un, deux et quatre verres, en bleu ciel ou vert feuille.
 - Les deux dessins `assets/plan-table-basse.webp` et `assets/eclate-table-basse.webp` restent visibles, sans lien de téléchargement. Le dossier technique n’est pas publié. Le PDF `documents/collection-ecrin-des-nuages.pdf` reste dans le dépôt, sans lien depuis l’interface.

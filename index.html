@@ -70,9 +70,9 @@
     <section class="collection section-shell" id="collection" aria-labelledby="collection-title">
       <div class="section-heading">
         <div><p class="eyebrow">La collection · 2026</p><h2 id="collection-title">Des pièces à <em>transmettre.</em></h2></div>
-        <p class="section-note">Deux pièces réalisées et photographiées. Chacune a un caractère unique par le verre récupéré qu’elle accueille. Prix sur demande.</p>
+        <p class="section-note">Deux pièces réalisées et photographiées. Chacune a un caractère unique par le verre récupéré qu’elle accueille. Ouvrez une fiche pour ses dimensions et demander un devis.</p>
       </div>
-      <div class="piece-grid" data-product-grid></div>
+      <div class="product-grid" data-product-grid></div>
     </section>
 
     <section class="story" id="projet" aria-labelledby="story-title">
@@ -140,9 +140,10 @@
       <div class="section-shell">
         <div class="section-heading">
           <div><p class="eyebrow">En images · matière, dessin, contexte</p><h2 id="gallery-title">Regarder de <em>plus près.</em></h2></div>
-          <p class="section-note">Fragments de verre, détails d’assemblage et tables en situation. Touchez une image pour l’ouvrir en grand.</p>
+          <p class="section-note">Fragments de verre, détails d’assemblage et tables en situation. Filtrez les vues, puis touchez une image pour l’ouvrir en grand.</p>
         </div>
-        <div class="photo-grid" data-photo-previews></div>
+        <div class="photo-filters" data-photo-filters role="group" aria-label="Filtrer les photographies"></div>
+        <div class="photo-grid" data-photo-previews aria-live="polite"></div>
         <div class="section-foot section-foot-split"><button class="text-link" type="button" data-open-gallery>Ouvrir la galerie <span aria-hidden="true">↗</span></button><span data-photo-total></span></div>
       </div>
     </section>
@@ -182,7 +183,7 @@
   <dialog class="product-dialog" data-product-dialog aria-labelledby="dialog-title">
     <button class="dialog-close" type="button" data-close-product aria-label="Fermer la fiche">×</button>
     <div class="dialog-gallery"><img data-dialog-image src="assets/photo-3.webp" alt=""><div class="dialog-gallery-nav"><button type="button" data-gallery-prev aria-label="Image précédente">←</button><span data-gallery-count aria-live="polite">01 / 03</span><button type="button" data-gallery-next aria-label="Image suivante">→</button></div></div>
-    <div class="dialog-content"><p class="eyebrow" data-dialog-kicker></p><h2 id="dialog-title" data-dialog-title></h2><p class="dialog-description" data-dialog-description></p><dl class="spec-list" data-dialog-specs></dl><fieldset class="variant-field"><legend>Choisir une teinte</legend><div data-dialog-variants></div></fieldset><button class="button-dark" type="button" data-add-to-cart>Ajouter à ma sélection <span aria-hidden="true">↗</span></button><p class="dialog-fineprint">La sélection permet de préparer une demande de devis, sans engagement d’achat.</p></div>
+    <div class="dialog-content"><p class="eyebrow" data-dialog-kicker></p><h2 id="dialog-title" data-dialog-title></h2><p class="dialog-description" data-dialog-description></p><dl class="spec-list" data-dialog-specs></dl><fieldset class="variant-field"><legend>Choisir une teinte</legend><div data-dialog-variants></div></fieldset><button class="button-dark" type="button" data-add-to-cart>Demander un devis <span aria-hidden="true">↗</span></button><p class="dialog-fineprint">La pièce rejoint votre sélection pour préparer la demande de devis, sans engagement d’achat.</p></div>
   </dialog>
 
   <dialog class="gallery-dialog" data-gallery-dialog aria-label="Galerie photographique Écrin des Nuages">

@@ -1,24 +1,26 @@
 import { products } from './products.js';
 import { syncDialogState } from '../../frontend/dialog-state.js';
 
+// Chaque photographie n’apparaît qu’une fois sur la page : celles de l’accueil, des cartes de la
+// collection, du projet, du verre et de l’équipe ne sont pas reprises ici.
 const photos = [
-  ['assets/photo-1.webp','Rencontre autour des tables et des verres des Tours Nuages','© Luc Bertrand',['table-haute-bleu']],
-  ['assets/photo-2.webp','Table haute et verre feuille de sauge, en bleu ciel','© Luc Bertrand',['table-haute-bleu']],
-  ['assets/photo-3.webp','Table basse et verre feuille de sauge, en vert','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-4.webp','Table basse et table haute devant la façade des Tours Nuages','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-5.webp','Les deux tables en dialogue avec les verres de la façade','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-6.webp','Les tables à l’échelle de la façade des Tours Nuages','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-7.webp','Détail de la tranche et du piétement vert de la table basse','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-8.webp','Détail de l’assemblage du verre et du bois','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-9.webp','Détail du bois teinté vert et de ses fixations','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-10.webp','Courbe du plateau et bord du verre feuille de sauge','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-11.webp','Détail du plateau en verre et d’un piétement','© Luc Bertrand',['table-basse-vert']],
-  ['assets/photo-12.webp','Détail de la table haute et de son verre','© Luc Bertrand',['table-haute-bleu']],
-  ['assets/photo-13.webp','Détail de la jonction entre verre et structure','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-14.webp','Piètements de la table haute et de la table basse','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-15.webp','Deux tables sous les fenêtres feuille de sauge','© Luc Bertrand',['table-basse-vert','table-haute-bleu']],
-  ['assets/photo-16.webp','Anaïs Fernon, Clémence Bondon et Camille Sardet dans le quartier des Tours Nuages','© Luc Bertrand',[]],
-  ['assets/table-basse-collectif.webp','Une table basse Écrin des Nuages sous une fenêtre feuille de sauge','© Collectif Feuille de Sauge',[]]
+  ['assets/photo-5.webp','Les deux tables en dialogue avec les verres de la façade','© Luc Bertrand',['table-basse-vert','table-haute-bleu'],'situation'],
+  ['assets/photo-6.webp','Les tables à l’échelle de la façade des Tours Nuages','© Luc Bertrand',['table-basse-vert','table-haute-bleu'],'situation'],
+  ['assets/photo-8.webp','Détail de l’assemblage du verre et du bois','© Luc Bertrand',['table-basse-vert'],'detail'],
+  ['assets/photo-9.webp','Détail du bois teinté vert et de ses fixations','© Luc Bertrand',['table-basse-vert'],'detail'],
+  ['assets/photo-11.webp','Détail du plateau en verre et d’un piétement','© Luc Bertrand',['table-basse-vert'],'detail'],
+  ['assets/photo-12.webp','Détail de la table haute et de son verre','© Luc Bertrand',['table-haute-bleu'],'detail'],
+  ['assets/photo-13.webp','Détail de la jonction entre verre et structure','© Luc Bertrand',['table-basse-vert','table-haute-bleu'],'detail'],
+  ['assets/photo-14.webp','Piètements de la table haute et de la table basse','© Luc Bertrand',['table-basse-vert','table-haute-bleu'],'detail'],
+  ['assets/photo-15.webp','Deux tables sous les fenêtres feuille de sauge','© Luc Bertrand',['table-basse-vert','table-haute-bleu'],'situation'],
+  ['assets/table-basse-collectif.webp','Une table basse Écrin des Nuages sous une fenêtre feuille de sauge','© Collectif Feuille de Sauge',[],'situation']
+];
+const filters = [
+  ['all','Toutes', () => true],
+  ['situation','En situation', photo => photo[4] === 'situation'],
+  ['detail','Détails', photo => photo[4] === 'detail'],
+  ['table-basse-vert','Table basse', photo => photo[3].includes('table-basse-vert')],
+  ['table-haute-bleu','Table haute', photo => photo[3].includes('table-haute-bleu')]
 ];
 const studies = [
   ['assets/nuage-render-000.webp','Table basse · 1 verre','Bleu ciel','Dessin d’étude'],
@@ -30,9 +32,13 @@ const studies = [
 ];
 
 const previewGrid = document.querySelector('[data-photo-previews]');
+const filterBar = document.querySelector('[data-photo-filters]');
 const galleryDialog = document.querySelector('[data-gallery-dialog]');
 const photoImage = document.querySelector('[data-gallery-photo]');
 const quoteActions = document.querySelector('[data-gallery-quotes]');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let activeFilter = 'all';
+let visible = photos;
 let photoIndex = 0;
 let galleryReturnFocus = null;
 
@@ -40,26 +46,35 @@ function pieceLabel(id) {
   return products.find(item => item.id === id)?.kindLabel.toLowerCase() || '';
 }
 
-const widePhotos = new Set(['assets/photo-4.webp', 'assets/photo-5.webp']);
+const widePhotos = new Set(['assets/photo-5.webp']);
+const featuredPhotos = new Set(['assets/photo-6.webp']);
 function thumb(src) { return src.replace('assets/', 'assets/thumbs/'); }
 
+function renderFilters() {
+  filterBar.innerHTML = filters.map(([id, label, test]) =>
+    `<button class="photo-filter" type="button" data-photo-filter="${id}" aria-pressed="${id === activeFilter}">${label} <span>${String(photos.filter(test).length).padStart(2,'0')}</span></button>`).join('');
+}
 function renderPreviews() {
-  previewGrid.innerHTML = photos.map(([src, alt, credit], index) => {
+  visible = photos.filter(filters.find(([id]) => id === activeFilter)[2]);
+  previewGrid.innerHTML = visible.map(([src, alt, credit], index) => {
     const wide = widePhotos.has(src);
-    return `<button class="photo-thumb${wide ? ' is-wide' : ''}" type="button" data-open-photo="${index}" aria-label="Agrandir la photographie ${index + 1} sur ${photos.length} : ${alt}. ${credit}"><img src="${thumb(src)}" alt="" loading="lazy" width="800" height="${wide ? 533 : 1200}"><span aria-hidden="true">${String(index + 1).padStart(2,'0')}</span></button>`;
+    const size = wide ? ' is-wide' : activeFilter === 'all' && featuredPhotos.has(src) ? ' is-featured' : '';
+    return `<button class="photo-thumb${size}" type="button" style="--i:${index}" data-open-photo="${index}" aria-label="Agrandir la photographie ${index + 1} sur ${visible.length} : ${alt}. ${credit}"><img src="${wide || size ? src : thumb(src)}" alt="" loading="lazy" width="${wide ? 1800 : 800}" height="1200"><span class="photo-number" aria-hidden="true">${String(index + 1).padStart(2,'0')}</span><span class="photo-caption" aria-hidden="true">${alt}</span></button>`;
   }).join('');
-  document.querySelector('[data-photo-total]').textContent = `${photos.length} photographies · Luc Bertrand, Collectif Feuille de Sauge`;
+  document.querySelector('[data-photo-total]').textContent = `${visible.length} ${visible.length === 1 ? 'photographie' : 'photographies'} · Luc Bertrand, Collectif Feuille de Sauge`;
 }
 function showPhoto(index) {
-  photoIndex = (index + photos.length) % photos.length;
-  const [src, alt, credit, pieces] = photos[photoIndex];
+  photoIndex = (index + visible.length) % visible.length;
+  const [src, alt, credit, pieces] = visible[photoIndex];
   photoImage.src = src;
   photoImage.alt = alt;
+  if (!reducedMotion.matches) photoImage.animate([{opacity: 0, transform: 'scale(.985)'}, {opacity: 1, transform: 'none'}], {duration: 320, easing: 'ease-out'});
   document.querySelector('[data-gallery-caption]').textContent = alt;
   document.querySelector('[data-gallery-credit]').textContent = credit;
-  document.querySelector('[data-gallery-counter]').textContent = `${String(photoIndex + 1).padStart(2,'0')} / ${String(photos.length).padStart(2,'0')}`;
+  document.querySelector('[data-gallery-counter]').textContent = `${String(photoIndex + 1).padStart(2,'0')} / ${String(visible.length).padStart(2,'0')}`;
   quoteActions.hidden = pieces.length === 0;
   quoteActions.innerHTML = pieces.map(id => `<button type="button" data-quote-piece="${id}">Demander un devis · ${pieceLabel(id)}</button>`).join('');
+  new Image().src = visible[(photoIndex + 1) % visible.length][0];
 }
 function openGallery(index = 0) {
   galleryReturnFocus = document.activeElement;
@@ -78,7 +93,25 @@ function requestQuote(productId, returnFocus) {
   document.querySelector('[data-quote-link]').focus();
 }
 
+renderFilters();
 renderPreviews();
+// Les vignettes apparaissent en cascade quand la galerie entre dans l’écran.
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver((entries, observer) => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    previewGrid.classList.add('is-in');
+    observer.disconnect();
+  }, {rootMargin: '0px 0px -10% 0px'}).observe(previewGrid);
+} else {
+  previewGrid.classList.add('is-in');
+}
+filterBar.addEventListener('click', event => {
+  const button = event.target.closest('[data-photo-filter]');
+  if (!button || button.dataset.photoFilter === activeFilter) return;
+  activeFilter = button.dataset.photoFilter;
+  filterBar.querySelectorAll('[data-photo-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+  renderPreviews();
+});
 previewGrid.addEventListener('click', event => {
   const button = event.target.closest('[data-open-photo]');
   if (button) openGallery(Number(button.dataset.openPhoto));
