@@ -70,9 +70,11 @@ function openGallery(index = 0) {
   document.querySelector('[data-gallery-close]').focus();
 }
 function closeGallery() { galleryDialog.close(); }
-function requestQuote(productId, returnFocus) {
+function requestQuote(productIds, returnFocus) {
   const focusTarget = galleryDialog.open ? galleryReturnFocus : returnFocus;
-  window.dispatchEvent(new CustomEvent('ecrin:add-to-cart', {detail: {productId, returnFocus: focusTarget, keepQuantity: true}}));
+  for (const productId of productIds) {
+    window.dispatchEvent(new CustomEvent('ecrin:add-to-cart', {detail: {productId, returnFocus: focusTarget, keepQuantity: true}}));
+  }
   if (galleryDialog.open) galleryDialog.close();
   document.querySelector('[data-cart-dialog]').showModal();
   syncDialogState();
@@ -99,8 +101,10 @@ document.querySelector('[data-gallery-close]').addEventListener('click', closeGa
 document.querySelector('[data-photo-prev]').addEventListener('click', () => showPhoto(photoIndex - 1));
 document.querySelector('[data-photo-next]').addEventListener('click', () => showPhoto(photoIndex + 1));
 document.addEventListener('click', event => {
-  const button = event.target.closest('[data-quote-piece]');
-  if (button) requestQuote(button.dataset.quotePiece, button);
+  const button = event.target.closest('[data-quote-piece], [data-quote-pieces]');
+  if (!button) return;
+  const productIds = button.dataset.quotePieces?.split(/\s+/).filter(Boolean) || [button.dataset.quotePiece];
+  requestQuote(productIds, button);
 });
 galleryDialog.addEventListener('close', () => {
   syncDialogState();
