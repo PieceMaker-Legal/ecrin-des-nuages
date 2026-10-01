@@ -510,32 +510,6 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
 .story-copy sup { font-size: .7em; line-height: 0; }
 .story-copy .text-link { align-self: flex-start; margin-top: clamp(2px, 1.2vh, 16px); }
 
-/* Repères chiffrés, sous la photographie. */
-.figures-list {
-  flex: none;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: space-between;
-  gap: 12px clamp(12px, 2vw, 28px);
-  padding: clamp(12px, 2.6vh, 24px) clamp(16px, 2.4vw, 32px);
-}
-.figures-list dt {
-  font-family: var(--serif);
-  font-size: clamp(20px, min(2vw, 3.6vh), 30px);
-  letter-spacing: -.03em;
-  line-height: 1.1;
-  white-space: nowrap;
-}
-.figures-list dd {
-  max-width: 15em;
-  margin-top: 6px;
-  font-size: 10.5px;
-  line-height: 1.45;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 /* ---------- Le verre ---------- */
 .material {
   padding-block: var(--pad);
@@ -1183,7 +1157,7 @@ dialog:not(.gallery-dialog) {
   .section-heading { grid-template-columns: 1fr; align-items: start; gap: 8px; }
   .section-note { max-width: 36em; }
 
-  /* Le projet se lit en deux slides : la photographie et ses repères, puis le texte. */
+  /* Le projet se lit en deux slides : la photographie, puis le texte. */
   .story { grid-template-columns: 1fr; }
 
   .material { grid-template-columns: 1fr; grid-template-rows: auto minmax(150px, 1fr); }
@@ -1266,10 +1240,6 @@ dialog:not(.gallery-dialog) {
 
   .story-image { min-height: 320px; }
   .story-copy > p:not(.eyebrow) { font-size: 16px; line-height: 1.65; margin-bottom: 14px; }
-  .figures-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; padding: 20px var(--gutter) 24px; }
-  .figures-list dt { font-size: clamp(24px, 6.8vw, 30px); }
-  .figures-list dd { font-size: 12px; letter-spacing: .06em; }
-
   .material { grid-template-rows: auto minmax(240px, 1fr); gap: 24px; }
   .material-copy > p:not(.eyebrow) { font-size: 16px; line-height: 1.65; margin-bottom: 14px; }
   .detail-images { gap: 12px; }
