@@ -27,7 +27,7 @@ export const products = [
       'Courbe du plateau et bord du verre de la table basse',
       'Détail de la tranche et du piétement vert de la table basse',
       'Détail de l’assemblage du verre et du bois vert',
-      'Percements et attaches du verre de la table basse',
+      'Détail du bois teinté vert et des fixations de la table basse',
       'Table basse et table haute devant la façade des Tours Nuages',
       'Les deux tables en dialogue avec les verres de la façade',
       'Les tables à l’échelle de la façade des Tours Nuages',
@@ -37,7 +37,7 @@ export const products = [
     ],
     description: 'Une table basse qui révèle le contour organique du verre récupéré. Chaque pièce compose avec les marques et les nuances de son fragment architectural.',
     dimensions: 'L 129,7 × l 110,9 × h 40,2 cm',
-    material: 'Verre trempé récupéré et structure en bois'
+    material: 'Verre trempé récupéré, plateau en contreplaqué fraisé, pieds en hêtre massif, platines métalliques, finition huilée'
   },
   {
     id: 'table-haute-bleu',

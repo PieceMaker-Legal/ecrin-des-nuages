@@ -17,4 +17,7 @@ header.addEventListener('keydown', event => {
     toggle.focus();
   }
 });
-window.matchMedia('(max-width:700px)').addEventListener('change', () => setMenu(false));
+window.matchMedia('(max-width:900px)').addEventListener('change', () => setMenu(false));
+document.addEventListener('click', event => {
+  if (toggle.getAttribute('aria-expanded') === 'true' && !header.contains(event.target)) setMenu(false);
+});

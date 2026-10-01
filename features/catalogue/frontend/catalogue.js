@@ -3,33 +3,36 @@ import { syncDialogState } from '../../frontend/dialog-state.js';
 
 const grid = document.querySelector('[data-product-grid]');
 const dialog = document.querySelector('[data-product-dialog]');
-let activeType = 'all';
-let activeColor = 'all';
 let currentProduct = products[0];
 let galleryIndex = 0;
 let productReturnFocus = null;
 let renderedVariantKind = null;
 
+function specs(product) {
+  const rows = [['Dimensions', product.dimensions]];
+  if (product.material) rows.push(['Matériaux', product.material]);
+  rows.push(['Prix', 'Sur demande']);
+  return rows.map(([key, value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`).join('');
+}
+
 function renderProducts() {
-  const visible = products.filter(item => (activeType === 'all' || item.kind === activeType) && (activeColor === 'all' || item.color === activeColor));
-  document.querySelectorAll('[data-filter-type]').forEach(button => {
-    const type = button.dataset.filterType;
-    const count = products.filter(item => (type === 'all' || item.kind === type) && (activeColor === 'all' || item.color === activeColor)).length;
-    button.querySelector('[data-filter-count]').textContent = String(count).padStart(2, '0');
-  });
-  document.querySelector('[data-results-count]').textContent = `${visible.length} ${visible.length === 1 ? 'pièce affichée' : 'pièces affichées'} · prix sur demande`;
-  grid.innerHTML = visible.length ? visible.map(item => `
-    <article class="product-card">
-      <div class="product-image${item.caption ? ' product-image-render' : ''}">
-        <img src="${item.image}" alt="${item.alt}" loading="lazy">
-        <span class="product-tag">${item.kindLabel} · ${item.colorLabel}</span>
-        <button class="product-open" type="button" data-product-id="${item.id}" aria-label="Voir la fiche : ${item.kindLabel}, ${item.colorLabel}">Voir la fiche</button>
+  grid.innerHTML = products.map((item, index) => `
+    <article class="piece">
+      <button class="piece-media" type="button" data-product-id="${item.id}" aria-label="Voir la fiche et les photographies : ${item.kindLabel}, ${item.colorLabel}">
+        <img src="${item.image}" srcset="${item.image.replace('assets/', 'assets/thumbs/')} 800w, ${item.image} 1200w" sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="1800" alt="${item.alt}" loading="lazy">
+        <span class="piece-count">${item.gallery.length} photographies</span>
+      </button>
+      <div class="piece-body">
+        <p class="eyebrow"><span class="swatch ${item.color}" aria-hidden="true"></span>${String(index + 1).padStart(2, '0')} · ${item.colorLabel}</p>
+        <h3 class="piece-title">${item.kindLabel}</h3>
+        <p class="piece-text">${item.description}</p>
+        <dl class="spec-list">${specs(item)}</dl>
+        <div class="piece-actions">
+          <button class="button-dark" type="button" data-quote-piece="${item.id}">Demander un devis <span aria-hidden="true">↗</span></button>
+          <button class="text-link" type="button" data-product-id="${item.id}">Voir la fiche</button>
+        </div>
       </div>
-      <div class="product-caption">
-        <div><h3 class="product-title">${item.kindLabel} <span aria-hidden="true">—</span> ${item.colorLabel}</h3><p class="product-meta">Verre récupéré · Nanterre</p>${item.caption ? `<p class="product-meta">${item.caption}</p>` : ''}<div class="product-colors" aria-label="Teinte ${item.colorLabel}"><span class="swatch ${item.color}" aria-hidden="true"></span></div></div>
-        <span class="product-price">Sur demande</span>
-      </div>
-    </article>`).join('') : '<p class="collection-empty">Cette association n’est pas proposée. Les pièces disponibles sont la table basse vert feuille et la table haute bleu ciel.</p>';
+    </article>`).join('');
 }
 
 function updateProductContent(product) {
@@ -38,10 +41,7 @@ function updateProductContent(product) {
   document.querySelector('[data-dialog-title]').textContent = `${product.kindLabel} · ${product.colorLabel}`;
   document.querySelector('[data-dialog-kicker]').textContent = `Écrin des Nuages · ${product.kindLabel}`;
   document.querySelector('[data-dialog-description]').textContent = product.description;
-  const specs = [['Dimensions', product.dimensions]];
-  if (product.material) specs.push(['Matériaux', product.material]);
-  specs.push(['Prix', 'Sur demande']);
-  document.querySelector('[data-dialog-specs]').innerHTML = specs.map(([key,value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`).join('');
+  document.querySelector('[data-dialog-specs]').innerHTML = specs(product);
   const colors = products.filter(item => item.kind === product.kind);
   const variants = document.querySelector('[data-dialog-variants]');
   variants.closest('fieldset').hidden = colors.length < 2;
@@ -72,12 +72,6 @@ grid.addEventListener('click', event => {
   const button = event.target.closest('[data-product-id]');
   if (button) showProduct(products.find(item => item.id === button.dataset.productId));
 });
-document.querySelectorAll('[data-filter-type]').forEach(button => button.addEventListener('click', () => {
-  activeType = button.dataset.filterType;
-  document.querySelectorAll('[data-filter-type]').forEach(item => { const active = item === button; item.classList.toggle('is-active',active); item.setAttribute('aria-pressed',String(active)); });
-  renderProducts();
-}));
-document.querySelector('[data-filter-color]').addEventListener('change', event => { activeColor = event.target.value; renderProducts(); });
 document.querySelector('[data-close-product]').addEventListener('click', () => dialog.close());
 dialog.addEventListener('close', syncDialogState);
 dialog.addEventListener('click', event => {

@@ -63,7 +63,7 @@ function renderCart(restoreFocus = null) {
     const paymentLink = safePaymentLink(id);
     const productName = `${product.kindLabel.toLowerCase()} ${product.colorLabel.toLowerCase()}`;
     return `<article class="cart-row">
-      <img src="${product.image}" alt="${product.alt}">
+      <img src="${product.image.replace('assets/', 'assets/thumbs/')}" alt="${product.alt}" width="800" height="1200">
       <div class="cart-row-content">
         <h3>${product.kindLabel}</h3>
         <p>${product.colorLabel} · Prix sur demande</p>
@@ -142,11 +142,11 @@ cartItems.addEventListener('click', event => {
 });
 
 window.addEventListener('ecrin:add-to-cart', event => {
-  const { productId, returnFocus } = event.detail || {};
+  const { productId, returnFocus, keepQuantity } = event.detail || {};
   if (!productIds.has(productId)) return;
   cartReturnFocus = returnFocus?.isConnected ? returnFocus : document.querySelector('[data-open-cart]');
   const quantity = cart[productId] || 0;
-  if (quantity < maxQuantity) cart[productId] = quantity + 1;
+  if (quantity < maxQuantity && !(keepQuantity && quantity > 0)) cart[productId] = quantity + 1;
   saveCart();
 });
 
