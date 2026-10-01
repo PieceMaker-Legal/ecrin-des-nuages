@@ -1208,6 +1208,8 @@ dialog:not(.gallery-dialog) {
 
   /* Lecture d’abord : les tailles de texte ne descendent plus, les images gardent une hauteur
      plancher. Une slide trop chargée pour l’écran reprend une hauteur libre (slides.js). */
+  /* Pas d’aimantation : les slides plus hautes que l’écran doivent défiler librement. */
+  html { scroll-snap-type: none; }
   .slide { --pad: clamp(24px, 4.5vh, 40px); }
   h2, .story-copy h2 { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.04; }
   .section-heading { gap: 12px; margin-bottom: 20px; }

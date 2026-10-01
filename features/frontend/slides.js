@@ -35,12 +35,28 @@ function fitSlides() {
   }
 }
 
+// Sur téléphone, la barre d’adresse qui se replie pendant le défilement déclenche « resize » sans
+// changer la largeur ni la hauteur d’une slide : recalculer à ce moment ferait sauter la page.
+const probe = document.createElement('div');
+probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:var(--slide)';
+document.body.append(probe);
+let fitted = '';
+function viewportKey() {
+  return `${document.documentElement.clientWidth}x${probe.offsetHeight}`;
+}
+
 let frame = 0;
-function scheduleFit() {
+function scheduleFit(force) {
   cancelAnimationFrame(frame);
-  frame = requestAnimationFrame(fitSlides);
+  frame = requestAnimationFrame(() => {
+    const key = viewportKey();
+    if (force !== true && key === fitted) return;
+    fitted = key;
+    fitSlides();
+  });
 }
 
 fitSlides();
-window.addEventListener('load', scheduleFit);
+fitted = viewportKey();
+window.addEventListener('load', () => scheduleFit(true));
 window.addEventListener('resize', scheduleFit);
