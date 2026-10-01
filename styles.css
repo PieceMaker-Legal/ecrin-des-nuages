@@ -1191,6 +1191,9 @@ dialog:not(.gallery-dialog) {
   html { scroll-snap-type: none; }
   .slide { --pad: clamp(24px, 4.5vh, 40px); }
   .hero-slide { min-height: var(--slide); }
+  @supports (min-height: 100lvh) {
+    .hero-slide { min-height: calc(100lvh - var(--header)); }
+  }
   h2, .story-copy h2 { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.04; }
   .section-heading { gap: 12px; margin-bottom: 20px; }
   .section-note { font-size: 15.5px; line-height: 1.6; }
