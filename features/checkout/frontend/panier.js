@@ -75,7 +75,7 @@ function renderCart(restoreFocus = null) {
           </div>
           <button class="remove-item" type="button" data-remove="${id}" aria-label="Retirer la ${productName} de la sélection">Retirer</button>
         </div>
-        ${paymentLink ? `<div class="stripe-row"><span class="product-meta">Paiement en ligne · 1 pièce</span>${quantity === 1 ? `<a class="button-dark" href="${paymentLink}" target="_blank" rel="noopener noreferrer">Acheter cette pièce <span aria-hidden="true">↗</span></a>` : '<p class="product-meta">Pour payer en ligne, choisissez une pièce à la fois.</p>'}</div>` : ''}
+        ${paymentLink ? `<div class="stripe-row"><span class="product-meta">Paiement en ligne · 1 pièce</span>${quantity === 1 ? `<a class="button-dark" href="${paymentLink}" target="_blank" rel="noopener noreferrer">Acheter cette pièce <span aria-hidden="true">→</span></a>` : '<p class="product-meta">Pour payer en ligne, choisissez une pièce à la fois.</p>'}</div>` : ''}
       </div>
     </article>`;
   }).join('');

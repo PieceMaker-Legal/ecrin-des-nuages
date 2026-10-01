@@ -135,7 +135,7 @@ form.addEventListener('submit', async event => {
     sending = false;
     fields.forEach(field => { field.disabled = false; });
     submit.disabled = false;
-    submit.innerHTML = 'Envoyer ma demande <span aria-hidden="true">↗</span>';
+    submit.innerHTML = 'Envoyer ma demande <span aria-hidden="true">→</span>';
     form.removeAttribute('aria-busy');
   }
 });
