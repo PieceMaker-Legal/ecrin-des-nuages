@@ -13,6 +13,6 @@
 
 ## Vérification
 
-Contrôles statiques effectués : cohérence des imports des modules, présence des 18 photographies, six rendus, deux plans et liens vers les deux PDF publiés. Le dossier de presse a servi de source pour le récit et les crédits ; son PDF n’est pas publié.
+Contrôles statiques effectués : cohérence des imports des modules, présence des 18 photographies, six rendus et deux plans. Le lien vers les dessins de collection reste publié. Le dossier technique et le dossier de presse ne sont pas publiés.
 
 La capture navigateur n’était pas disponible pendant cette revue. Contrôles manuels recommandés avant publication : affichage catalogue et portrait sur ordinateur et mobile ; défilement de la navigation étroite ; filtres et compteurs ; navigation de la galerie ; ouverture/fermeture au clavier des dialogs ; conservation du focus pendant le changement de teinte et les quantités ; ajout, retrait, persistance et limite de sélection.

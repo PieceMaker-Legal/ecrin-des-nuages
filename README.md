@@ -37,5 +37,5 @@ Les quatre fiches correspondent aux tables basse et haute, en vert feuille et bl
 
 - Les 18 photographies de la galerie sont `assets/photo-1.webp` à `assets/photo-16.webp`, `assets/table-basse.webp` et `assets/table-basse-collectif.webp`. Chaque visuel apparaît dans la galerie et conserve sa légende et son crédit.
 - Les six rendus `assets/nuage-render-000.webp` à `assets/nuage-render-005.webp` apparaissent dans « La collection se dessine ». Ils montrent les variantes à un, deux et quatre verres ; les assemblages à plusieurs verres sont signalés comme études en cours, sans offre à la vente.
-- Les plans `assets/plan-table-basse.webp` et `assets/eclate-table-basse.webp` accompagnent les PDF `documents/table-nuage-basse.pdf` (dossier technique) et `documents/collection-ecrin-des-nuages.pdf` (dessins de collection).
+- Les deux dessins publiés sont `assets/plan-table-basse.webp` (plan) et `assets/eclate-table-basse.webp` (assemblage). Le PDF `documents/collection-ecrin-des-nuages.pdf` regroupe les dessins de collection. Le dossier technique n’est pas publié.
 - Le dossier de presse a servi à rédiger l’histoire du projet et la présentation du collectif. Les CV, téléphones et autres coordonnées privées du dossier n’ont pas été reproduits.
