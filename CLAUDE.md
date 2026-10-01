@@ -7,3 +7,5 @@ Tous les contenus et visuels publiés proviennent des ressources fournies pour �
 Le code du site a été créé avec Luna.
 
 Github configuré : https://github.com/PieceMaker-Legal/ecrin-des-nuages — Pages: https://piecemaker-legal.github.io/ecrin-des-nuages/ — compte gh: PieceMaker-Legal
+
+Le lien vers `styles.css` dans `index.html` porte un numéro de version (`?v=…`) : le changer à chaque modification de la feuille de style, sinon les téléphones gardent l’ancienne en cache.
