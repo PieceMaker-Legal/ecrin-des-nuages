@@ -19,7 +19,11 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Table basse et table haute Écrin des Nuages devant la façade des Tours Nuages">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f4f2ec'/%3E%3Ctext x='8' y='49' font-family='Georgia,serif' font-size='49' fill='%2353634d'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="assets/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icone-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preload" as="image" href="assets/photo-4.webp" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script src="config.js"></script>
@@ -32,6 +36,34 @@
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="intro" aria-hidden="true">
+    <svg viewBox="0 0 300 360" role="presentation">
+      <defs>
+        <filter id="intro-pencil" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="3"><animate attributeName="seed" values="3;9;15" dur=".36s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="3.2"/>
+        </filter>
+      </defs>
+      <g filter="url(#intro-pencil)">
+        <g class="intro-wall">
+          <path pathLength="1" d="M82.4 50.9C91.5 50.2 99.3 59.4 112.3 59.4C127.9 59.4 142.2 51.5 160.4 51.5C196.8 51.5 221.5 78.8 221.5 112.6C221.5 149.1 192.9 172.4 160.4 172.4C121.4 172.4 78.5 121.1 78.5 65.8C78.5 56.8 79.1 51.2 82.4 50.9Z"/>
+          <path pathLength="1" d="M34 34h70M196 34h72M30 70h36M236 74h38M28 150h44M232 152h42M36 190h84M182 192h80M70 34v36M232 34v40M52 150v40M250 152v40"/>
+        </g>
+        <g class="intro-table">
+          <g class="intro-legs">
+            <path pathLength="1" d="M107 262v54h9v-52"/>
+            <path pathLength="1" d="M170 266v56h9v-56"/>
+            <path pathLength="1" d="M196 258v50h7v-52"/>
+          </g>
+          <g class="intro-glass">
+            <path class="intro-pane" d="M-57.2 -51.7C-49.5 -52.2 -42.9 -44.5 -31.9 -44.5C-18.7 -44.5 -6.6 -51.2 8.8 -51.2C39.6 -51.2 60.5 -28 60.5 0.5C60.5 31.4 36.3 51.1 8.8 51.1C-24.2 51.1 -60.5 7.7 -60.5 -39C-60.5 -46.8 -60 -51.4 -57.2 -51.7Z"/>
+            <path d="M-22 -14l14 -12M-18 2l26 -22"/>
+          </g>
+        </g>
+        <path class="intro-pop" d="M62 250l-14 -6M60 268h-16M240 248l14 -6M242 266h16"/>
+      </g>
+    </svg>
+  </div>
   <header class="site-header" id="haut">
     <div class="header-inner">
       <a class="wordmark" href="#haut" aria-label="Écrin des Nuages, accueil">ÉCRIN <span>DES</span> NUAGES<span class="wordmark-dot">.</span></a>

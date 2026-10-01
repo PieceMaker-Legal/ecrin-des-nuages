@@ -1350,3 +1350,57 @@ dialog:not(.gallery-dialog) {
   .slide { height: auto; zoom: 1; overflow: visible; }
   .photo-thumb { opacity: 1; }
 }
+
+/* ---------- Animation d’ouverture ---------- */
+/* 2,5 s, dessin au crayon : la fenêtre nuage se trace, son verre en sort, se couche et devient
+   une table. Entièrement en CSS : le voile s’efface de lui-même, sans script. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  pointer-events: none;
+  animation: intro-out .4s ease 2.1s both;
+}
+.intro svg { width: min(72vw, 52vh, 380px); height: auto; overflow: visible; }
+.intro path { fill: none; stroke: #1d1d1b; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.intro-wall path, .intro-legs path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.intro-wall { animation: intro-fade .45s ease .95s both; }
+.intro-wall path { animation: intro-draw .55s ease-out both; }
+.intro-wall path + path { stroke-width: 1.6; animation-delay: .1s; }
+.intro-glass { animation: intro-glass 1.2s both .25s; }
+.intro-glass path { vector-effect: non-scaling-stroke; }
+.intro .intro-pane { fill: var(--paper); }
+.intro-glass path + path { stroke-width: 1.6; }
+.intro-legs path { animation: intro-draw .3s ease-out both; }
+.intro-legs path:nth-child(1) { animation-delay: 1.42s; }
+.intro-legs path:nth-child(2) { animation-delay: 1.52s; }
+.intro-legs path:nth-child(3) { animation-delay: 1.62s; }
+.intro-table { transform-origin: 150px 322px; animation: intro-bounce .3s ease-out 1.8s both; }
+.intro .intro-pop { stroke-width: 1.8; opacity: 0; animation: intro-pop .3s ease-out 1.8s both; }
+
+@keyframes intro-draw { to { stroke-dashoffset: 0; } }
+@keyframes intro-fade { to { opacity: .22; } }
+@keyframes intro-glass {
+  0% { opacity: 0; transform: translate(150px, 112px) scale(.9); }
+  25% { opacity: 1; transform: translate(150px, 112px) scale(1); animation-timing-function: ease-in-out; }
+  38% { transform: translate(150px, 104px) rotate(5deg) scale(1.07); animation-timing-function: cubic-bezier(.5, 0, .7, .4); }
+  82% { transform: translate(150px, 266px) rotate(-3deg) scale(1.04, .34); animation-timing-function: ease-out; }
+  100% { opacity: 1; transform: translate(150px, 262px) rotate(0) scale(1, .4); }
+}
+@keyframes intro-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.05, .9); }
+  75% { transform: scale(.98, 1.04); }
+  100% { transform: scale(1); }
+}
+@keyframes intro-pop {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes intro-out { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none; } }
+@media print { .intro { display: none; } }
