@@ -35,8 +35,8 @@ function fitSlides() {
   }
 }
 
-// Sur téléphone, la barre d’adresse qui se replie pendant le défilement déclenche « resize » sans
-// changer la largeur ni la hauteur d’une slide : recalculer à ce moment ferait sauter la page.
+// Safari peut émettre « resize » pendant l’animation de ses barres. La clé évite un recalcul
+// quand la largeur et la hauteur dynamique réellement mesurées n’ont pas changé.
 const probe = document.createElement('div');
 probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:var(--slide)';
 document.body.append(probe);

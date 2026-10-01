@@ -30,6 +30,9 @@
 @supports (height: 1svh) {
   :root { --slide: calc(100svh - var(--header)); }
 }
+@supports (height: 1dvh) {
+  :root { --slide: calc(100dvh - var(--header)); }
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -1187,6 +1190,7 @@ dialog:not(.gallery-dialog) {
   /* Pas d’aimantation : les slides plus hautes que l’écran doivent défiler librement. */
   html { scroll-snap-type: none; }
   .slide { --pad: clamp(24px, 4.5vh, 40px); }
+  .hero-slide { min-height: var(--slide); }
   h2, .story-copy h2 { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.04; }
   .section-heading { gap: 12px; margin-bottom: 20px; }
   .section-note { font-size: 15.5px; line-height: 1.6; }
