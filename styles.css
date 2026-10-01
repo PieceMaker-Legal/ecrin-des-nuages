@@ -232,7 +232,10 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
   backdrop-filter: var(--glass-blur);
   box-shadow: inset 0 1px 0 var(--glass-edge), 0 4px 20px rgba(29, 45, 33, .05);
   border-bottom: 1px solid var(--line);
+  transition: transform .3s ease;
 }
+/* L’en-tête s’efface au défilement vers le bas et revient au défilement vers le haut (navigation.js). */
+.site-header.is-away { transform: translateY(-100%); box-shadow: none; }
 .header-inner {
   max-width: var(--page);
   min-height: var(--header);
@@ -277,8 +280,8 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
 .cart-trigger, .menu-toggle { border: 0; background: none; padding: 0 4px; }
 .menu-toggle { display: none; justify-content: center; min-width: 44px; margin-right: -12px; }
 /* Le symbole du menu reprend la silhouette du verre « feuille de sauge » ; il se remplit à l’ouverture. */
-.menu-glass { fill: transparent; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; transition: fill .2s; }
-.menu-toggle[aria-expanded="true"] .menu-glass { fill: currentColor; }
+.menu-glass { fill: transparent; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; transition: fill .2s, stroke .2s; }
+.menu-toggle[aria-expanded="true"] .menu-glass { fill: var(--sage); stroke: var(--sage-dark); }
 
 .cart-count {
   display: inline-grid;

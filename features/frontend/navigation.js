@@ -19,3 +19,24 @@ window.matchMedia('(max-width:900px)').addEventListener('change', () => setMenu(
 document.addEventListener('click', event => {
   if (toggle.getAttribute('aria-expanded') === 'true' && !header.contains(event.target)) setMenu(false);
 });
+
+// L’en-tête s’efface quand la page défile vers le bas et revient dès qu’elle remonte.
+// Il reste visible en haut de page, menu ouvert ou quand le clavier y place le focus
+// (un lien simplement touché ne le retient pas).
+let lastY = window.scrollY;
+function setAway(away) {
+  header.classList.toggle('is-away', away);
+}
+window.addEventListener('scroll', () => {
+  // Bornes : le rebond élastique de Safari dépasse le haut et le bas de la page.
+  const limit = document.documentElement.scrollHeight - window.innerHeight;
+  const y = Math.min(Math.max(window.scrollY, 0), limit);
+  if (Math.abs(y - lastY) < 6) return;
+  const down = y > lastY;
+  lastY = y;
+  const pinned = y <= header.offsetHeight || toggle.getAttribute('aria-expanded') === 'true' || header.querySelector(':focus-visible');
+  setAway(down && !pinned);
+}, { passive: true });
+header.addEventListener('focusin', event => {
+  if (event.target.matches(':focus-visible')) setAway(false);
+});
