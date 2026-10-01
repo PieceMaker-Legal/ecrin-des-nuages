@@ -1342,7 +1342,8 @@ dialog:not(.gallery-dialog) {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; scroll-snap-type: none; }
-  *, *::before, *::after { transition: none !important; animation-duration: .01ms !important; animation-delay: 0s !important; }
+  /* L’animation d’ouverture (.intro) est jouée même avec ce réglage, à la demande des créatrices. */
+  *:not(.intro, .intro *), *::before, *::after { transition: none !important; animation-duration: .01ms !important; animation-delay: 0s !important; }
 }
 
 @media print {
@@ -1404,5 +1405,4 @@ dialog:not(.gallery-dialog) {
   100% { opacity: 0; }
 }
 @keyframes intro-out { to { opacity: 0; visibility: hidden; } }
-@media (prefers-reduced-motion: reduce) { .intro { display: none; } }
 @media print { .intro { display: none; } }

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "unprotected": [
+    "apple-touch-icon.png",
+    "assets/icone-192.png",
+    "assets/icone-512.png"
+  ],
+  "resources": []
+}
