@@ -278,7 +278,8 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
 
 .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
 .cart-trigger, .menu-toggle { border: 0; background: none; padding: 0 4px; }
-.menu-toggle { display: none; justify-content: center; min-width: 44px; margin-right: -12px; }
+.menu-toggle { display: inline-flex; justify-content: center; min-width: 44px; margin-right: -12px; }
+@media (min-width: 901px) { .menu-toggle { pointer-events: none; cursor: default; } }
 /* Le symbole du menu reprend la silhouette du verre « feuille de sauge » ; il se remplit à l’ouverture. */
 .menu-glass { fill: transparent; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; transition: fill .2s, stroke .2s; }
 .menu-toggle[aria-expanded="true"] .menu-glass { fill: var(--sage); stroke: var(--sage-dark); }
