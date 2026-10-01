@@ -21,8 +21,6 @@ Pour activer un paiement, créer d’abord dans Stripe un Payment Link de produc
 ```js
 paymentLinks: {
   'table-basse-vert': 'https://buy.stripe.com/…',
-  'table-basse-bleu': null,
-  'table-haute-vert': null,
   'table-haute-bleu': null
 }
 ```
@@ -31,13 +29,13 @@ Seuls les liens de production sous `buy.stripe.com` sont affichés. Une pièce p
 
 ## Contenus
 
-Les quatre fiches correspondent aux tables basse et haute, en vert feuille et bleu ciel. Les visuels issus des dessins de collection sont identifiés comme « Vue de collection ». Les autres idées de mobilier figurant dans le dossier restent des pistes en cours de dessin et ne sont pas proposées comme produits. Le site ne comporte pas de prix, quantité disponible ni caractéristique matière non confirmés.
+Les deux fiches proposées sont les pièces photographiées : la table basse vert feuille et la table haute bleu ciel. Le devis se demande depuis ces fiches et depuis les photographies qui les montrent. Les teintes seulement dessinées et les assemblages à plusieurs verres restent des pistes, sans devis. Le site ne comporte pas de prix, quantité disponible ni caractéristique matière non confirmés.
 
 ## Inventaire des ressources
 
 - Les 18 photographies de la galerie sont `assets/photo-1.webp` à `assets/photo-16.webp`, `assets/table-basse.webp` et `assets/table-basse-collectif.webp`. Chaque visuel apparaît dans la galerie et conserve sa légende et son crédit.
-- Les six rendus `assets/nuage-render-000.webp` à `assets/nuage-render-005.webp` apparaissent dans « La collection se dessine ». Ils montrent les variantes à un, deux et quatre verres ; les assemblages à plusieurs verres sont signalés comme études en cours, sans offre à la vente.
-- Les deux dessins `assets/plan-table-basse.webp` et `assets/eclate-table-basse.webp` restent visibles dans l’interface, sans lien de téléchargement. Le PDF technique est retiré du dépôt publié. Les rendus de collection proviennent du dossier source conservé dans `Ressources`.
+- Les six rendus `assets/nuage-render-000.webp` à `assets/nuage-render-005.webp` apparaissent dans « La collection se dessine ». Ils montrent des teintes et des assemblages à un, deux et quatre verres, sans devis.
+- Les deux dessins `assets/plan-table-basse.webp` et `assets/eclate-table-basse.webp` restent visibles, sans lien de téléchargement. Le dossier technique n’est pas publié. Le PDF `documents/collection-ecrin-des-nuages.pdf` reste dans le dépôt, sans lien depuis l’interface.
 - Le dossier de presse a servi à rédiger l’histoire du projet et la présentation du collectif. Les CV, téléphones et autres coordonnées privées du dossier n’ont pas été reproduits.
 
 ## Réception des demandes

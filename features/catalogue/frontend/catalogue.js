@@ -17,8 +17,8 @@ function renderProducts() {
     const count = products.filter(item => (type === 'all' || item.kind === type) && (activeColor === 'all' || item.color === activeColor)).length;
     button.querySelector('[data-filter-count]').textContent = String(count).padStart(2, '0');
   });
-  document.querySelector('[data-results-count]').textContent = `${visible.length} ${visible.length === 1 ? 'variante affichée' : 'variantes affichées'} · prix sur demande`;
-  grid.innerHTML = visible.map(item => `
+  document.querySelector('[data-results-count]').textContent = `${visible.length} ${visible.length === 1 ? 'pièce affichée' : 'pièces affichées'} · prix sur demande`;
+  grid.innerHTML = visible.length ? visible.map(item => `
     <article class="product-card">
       <div class="product-image${item.caption ? ' product-image-render' : ''}">
         <img src="${item.image}" alt="${item.alt}" loading="lazy">
@@ -29,7 +29,7 @@ function renderProducts() {
         <div><h3 class="product-title">${item.kindLabel} <span aria-hidden="true">—</span> ${item.colorLabel}</h3><p class="product-meta">Verre récupéré · Nanterre</p>${item.caption ? `<p class="product-meta">${item.caption}</p>` : ''}<div class="product-colors" aria-label="Teinte ${item.colorLabel}"><span class="swatch ${item.color}" aria-hidden="true"></span></div></div>
         <span class="product-price">Sur demande</span>
       </div>
-    </article>`).join('');
+    </article>`).join('') : '<p class="collection-empty">Cette association n’est pas proposée. Les pièces disponibles sont la table basse vert feuille et la table haute bleu ciel.</p>';
 }
 
 function updateProductContent(product) {
@@ -44,6 +44,7 @@ function updateProductContent(product) {
   document.querySelector('[data-dialog-specs]').innerHTML = specs.map(([key,value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`).join('');
   const colors = products.filter(item => item.kind === product.kind);
   const variants = document.querySelector('[data-dialog-variants]');
+  variants.closest('fieldset').hidden = colors.length < 2;
   if (renderedVariantKind !== product.kind) {
     variants.innerHTML = colors.map(item => `<label class="variant-option"><input type="radio" name="product-color" value="${item.id}"><span class="swatch ${item.color}" aria-hidden="true"></span>${item.colorLabel}</label>`).join('');
     renderedVariantKind = product.kind;

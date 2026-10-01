@@ -388,6 +388,15 @@ figure,p,h1,h2,h3 {
     row-gap:57px
 }
 
+.collection-empty {
+    grid-column:1 / -1;
+    max-width:42rem;
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6
+}
+
 .product-card {
     min-width:0
 }
@@ -595,6 +604,18 @@ figure,p,h1,h2,h3 {
     text-transform:uppercase;
     color:var(--muted);
     padding-top:8px
+}
+
+.material-quote {
+    grid-column:2;
+    margin-top:22px
+}
+
+.material-quote .text-link {
+    background:none;
+    border-top:0;
+    border-right:0;
+    border-left:0
 }
 
 .team {
@@ -1755,6 +1776,16 @@ figure,p,h1,h2,h3 {
     letter-spacing:.12em
 }
 
+.photo-preview .photo-quote-mark {
+    top:10px;
+    right:11px;
+    bottom:auto;
+    left:auto;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase
+}
+
 .photo-preview-1 {
     grid-column:span 5;
     grid-row:span 2
@@ -1860,7 +1891,9 @@ figure,p,h1,h2,h3 {
 
 .gallery-stage img {
     width:100%;
-    height:calc(100% - 47px);
+    flex:1 1 auto;
+    min-height:0;
+    height:auto;
     max-width:100%;
     object-fit:contain;
     object-position:center;
@@ -1871,11 +1904,36 @@ figure,p,h1,h2,h3 {
     width:100%;
     display:flex;
     justify-content:space-between;
-    gap:15px;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px 15px;
     padding:11px 3px 0;
     font-size:11px;
     letter-spacing:.04em;
     color:#d4d4ca
+}
+
+.gallery-quotes {
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 18px;
+    margin-left:auto
+}
+
+.gallery-quotes[hidden] {
+    display:none !important
+}
+
+.gallery-quotes button {
+    min-height:44px;
+    padding:8px 0;
+    border:0;
+    border-bottom:1px solid currentColor;
+    background:none;
+    color:inherit;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase
 }
 
 .gallery-arrow {
@@ -2132,7 +2190,14 @@ figure,p,h1,h2,h3 {
     }
 
     .gallery-stage img {
-        height:calc(100% - 62px)
+        height:auto;
+        flex:1 1 auto;
+        min-height:0
+    }
+
+    .gallery-quotes {
+        margin-left:0;
+        width:100%
     }
 
     .gallery-stage figcaption {
@@ -2389,8 +2454,10 @@ figure,p,h1,h2,h3 {
     }
 
     .gallery-stage img {
-        height:calc(100% - 62px);
-        max-height:calc(100dvh - 140px);
+        height:auto;
+        max-height:none;
+        flex:1 1 auto;
+        min-height:0;
         object-fit:contain;
         object-position:center;
         margin-inline:auto
