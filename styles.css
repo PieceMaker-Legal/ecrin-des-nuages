@@ -1371,10 +1371,9 @@ dialog:not(.gallery-dialog) {
 }
 .intro-title {
   position: absolute;
-  top: clamp(24px, 9vh, 84px);
-  left: 0;
-  right: 0;
-  text-align: center;
+  left: var(--gutter);
+  bottom: clamp(24px, 9vh, 84px);
+  text-align: left;
   font-size: clamp(24px, 3vw, 36px);
   font-weight: 700;
   letter-spacing: -.04em;
