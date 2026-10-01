@@ -30,3 +30,10 @@ Seuls les liens de production sous `buy.stripe.com` sont affichés. Une pièce p
 ## Contenus
 
 Les quatre fiches correspondent aux tables basse et haute, en vert feuille et bleu ciel. Les visuels issus des dessins de collection sont identifiés comme « Vue de collection ». Les autres idées de mobilier figurant dans le dossier restent des pistes en cours de dessin et ne sont pas proposées comme produits. Le site ne comporte pas de prix, quantité disponible ni caractéristique matière non confirmés.
+
+## Inventaire des ressources
+
+- Les 18 photographies de la galerie sont `assets/photo-1.webp` à `assets/photo-16.webp`, `assets/table-basse.webp` et `assets/table-basse-collectif.webp`. Chaque visuel apparaît dans la galerie et conserve sa légende et son crédit.
+- Les six rendus `assets/nuage-render-000.webp` à `assets/nuage-render-005.webp` apparaissent dans « La collection se dessine ». Ils montrent les variantes à un, deux et quatre verres ; les assemblages à plusieurs verres sont signalés comme études en cours, sans offre à la vente.
+- Les plans `assets/plan-table-basse.webp` et `assets/eclate-table-basse.webp` accompagnent les PDF `documents/table-nuage-basse.pdf` (dossier technique) et `documents/collection-ecrin-des-nuages.pdf` (dessins de collection).
+- Le dossier de presse a servi à rédiger l’histoire du projet et la présentation du collectif. Les CV, téléphones et autres coordonnées privées du dossier n’ont pas été reproduits.
