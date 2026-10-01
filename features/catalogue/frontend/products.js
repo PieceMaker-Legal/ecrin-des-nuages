@@ -35,40 +35,9 @@ export const products = [
       'Piètements de la table haute et de la table basse',
       'Jonction entre le verre et la structure des deux tables'
     ],
-    format: '1 verre',
     description: 'Une table basse qui révèle le contour organique du verre récupéré. Chaque pièce compose avec les marques et les nuances de son fragment architectural.',
     dimensions: 'L 129,7 × l 110,9 × h 40,2 cm',
     material: 'Verre trempé récupéré et structure en bois'
-  },
-  {
-    id: 'table-basse-bleu',
-    kind: 'basse',
-    kindLabel: 'Table basse',
-    color: 'bleu',
-    colorLabel: 'Bleu ciel',
-    format: '1 verre',
-    image: 'assets/nuage-render-000.webp',
-    alt: 'Vue de collection de la table basse Écrin des Nuages en teinte bleu ciel',
-    gallery: ['assets/nuage-render-000.webp'],
-    galleryAlt: ['Vue de collection de la table basse bleu ciel, un verre'],
-    caption: 'Vue de collection',
-    description: 'La silhouette de la table basse se décline en bleu ciel. Le visuel est une vue de collection.',
-    dimensions: 'L 129,7 × l 110,9 × h 40,2 cm',
-    material: 'Verre trempé récupéré et structure en bois'
-  },
-  {
-    id: 'table-basse-bleu-2',
-    kind: 'basse',
-    kindLabel: 'Table basse',
-    color: 'bleu',
-    colorLabel: 'Bleu ciel',
-    format: '2 verres',
-    image: 'assets/nuage-render-002.webp',
-    alt: 'Vue de collection d’une table basse à deux verres, bleu ciel',
-    gallery: ['assets/nuage-render-002.webp'],
-    galleryAlt: ['Vue de collection de la table basse bleu ciel, deux verres'],
-    caption: 'Vue de collection',
-    description: 'Assemblage dessiné de deux verres, en table basse bleu ciel. Le visuel est une vue de collection.'
   },
   {
     id: 'table-haute-bleu',
@@ -100,66 +69,8 @@ export const products = [
       'Piètements de la table haute et de la table basse',
       'Jonction entre le verre et la structure des deux tables'
     ],
-    format: '1 verre',
     description: 'La première table autoproduite, présentée à Paris Design Week Factory en 2025. Sa structure accueille le verre à fleur et reprend le dessin des anciennes fixations.',
     dimensions: 'L 124 × l 113 × h 75 cm',
     material: 'Bois de hêtre huilé teinté bleu ciel, verre trempé et platines aluminium'
-  },
-  {
-    id: 'table-haute-vert',
-    kind: 'haute',
-    kindLabel: 'Table haute',
-    color: 'vert',
-    colorLabel: 'Vert feuille',
-    format: '1 verre',
-    image: 'assets/nuage-render-001.webp',
-    alt: 'Vue de collection de la table haute Écrin des Nuages en teinte vert feuille',
-    gallery: ['assets/nuage-render-001.webp'],
-    galleryAlt: ['Vue de collection de la table haute vert feuille, un verre'],
-    caption: 'Vue de collection',
-    description: 'La table haute reprend le dessin du verre « feuille de sauge ». Le visuel est une vue de collection.',
-    dimensions: 'L 124 × l 113 × h 75 cm'
-  },
-  {
-    id: 'table-haute-bleu-2',
-    kind: 'haute',
-    kindLabel: 'Table haute',
-    color: 'bleu',
-    colorLabel: 'Bleu ciel',
-    format: '2 verres',
-    image: 'assets/nuage-render-003.webp',
-    alt: 'Vue de collection d’une table haute à deux verres, bleu ciel',
-    gallery: ['assets/nuage-render-003.webp'],
-    galleryAlt: ['Vue de collection de la table haute bleu ciel, deux verres'],
-    caption: 'Vue de collection',
-    description: 'Assemblage dessiné de deux verres, en table haute bleu ciel. Le visuel est une vue de collection.'
-  },
-  {
-    id: 'table-haute-vert-2',
-    kind: 'haute',
-    kindLabel: 'Table haute',
-    color: 'vert',
-    colorLabel: 'Vert feuille',
-    format: '2 verres',
-    image: 'assets/nuage-render-004.webp',
-    alt: 'Vue de collection d’une table haute à deux verres, vert feuille',
-    gallery: ['assets/nuage-render-004.webp'],
-    galleryAlt: ['Vue de collection de la table haute vert feuille, deux verres'],
-    caption: 'Vue de collection',
-    description: 'Assemblage dessiné de deux verres, en table haute vert feuille. Le visuel est une vue de collection.'
-  },
-  {
-    id: 'table-haute-bleu-4',
-    kind: 'haute',
-    kindLabel: 'Table haute',
-    color: 'bleu',
-    colorLabel: 'Bleu ciel',
-    format: '4 verres',
-    image: 'assets/nuage-render-005.webp',
-    alt: 'Vue de collection d’une table haute à quatre verres, bleu ciel',
-    gallery: ['assets/nuage-render-005.webp'],
-    galleryAlt: ['Vue de collection de la table haute bleu ciel, quatre verres'],
-    caption: 'Vue de collection',
-    description: 'Assemblage dessiné de quatre verres, en table haute bleu ciel. Le visuel est une vue de collection.'
   }
 ];
