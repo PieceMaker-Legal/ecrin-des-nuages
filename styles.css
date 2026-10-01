@@ -337,7 +337,7 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
   margin-inline: 0;
   padding: var(--pad) var(--gutter);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 .hero::after {
   content: "";
@@ -350,6 +350,7 @@ h2 { font-size: clamp(28px, min(5vw, 7.5vh), 64px); margin-top: clamp(8px, 2vh, 
 .hero-copy {
   width: min(100%, var(--page));
   margin-inline: auto;
+  margin-block-start: clamp(44px, 10vh, 100px);
   color: #fff;
   text-shadow: 0 1px 18px rgba(0, 0, 0, .2);
 }
