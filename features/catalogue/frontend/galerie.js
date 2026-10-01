@@ -30,7 +30,6 @@ const studies = [
   ['assets/nuage-render-005.webp','Table haute · 4 verres','Bleu ciel','Étude en cours · pas de devis']
 ];
 
-const previewIndices = [3, 6, 8, 10, 14, 15];
 const previewGrid = document.querySelector('[data-photo-previews]');
 const galleryDialog = document.querySelector('[data-gallery-dialog]');
 const photoImage = document.querySelector('[data-gallery-photo]');
@@ -43,11 +42,10 @@ function pieceLabel(id) {
 }
 
 function renderPreviews() {
-  previewGrid.innerHTML = previewIndices.map((index, position) => {
-    const [src, alt, credit, pieces] = photos[index];
+  previewGrid.innerHTML = photos.map(([src, alt, credit, pieces], index) => {
     const hint = pieces.length ? ` Devis possible : ${pieces.map(pieceLabel).join(' et ')}.` : '';
     const mark = pieces.length ? '<span class="photo-quote-mark">Devis</span>' : '';
-    return `<button class="photo-preview photo-preview-${position + 1}" type="button" data-open-photo="${index}" aria-label="Ouvrir la galerie sur la photo : ${alt}.${hint}"><img src="${src}" alt="${alt}" loading="lazy"><span>${String(index + 1).padStart(2,'0')} / 18</span>${mark}<span class="visually-hidden">${credit}</span></button>`;
+    return `<button class="photo-preview" type="button" data-open-photo="${index}" aria-label="Ouvrir la galerie sur la photo : ${alt}.${hint}"><img src="${src}" alt="${alt}" loading="lazy"><span>${String(index + 1).padStart(2,'0')} / ${photos.length}</span>${mark}<span class="visually-hidden">${credit}</span></button>`;
   }).join('');
 }
 function showPhoto(index) {

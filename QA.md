@@ -1,5 +1,11 @@
 # Revue de mise en page et interactions
 
+## Toutes les photographies sur la page
+
+Les 18 photographies sources sont affichées directement dans la galerie de la page, avec ouverture individuelle en grand, descriptions et crédits. La grille utilise quatre colonnes sur ordinateur, trois sur tablette et deux sur mobile ; les images sont contenues dans leur cadre pour conserver la photographie entière.
+
+Contrôles : les 18 fichiers sources correspondent aux 18 visuels de la galerie ; les fichiers optimisés existent ; le module génère 18 vignettes uniques et le dernier visuel affiche le compteur « 18 / 18 ». Syntaxe JavaScript vérifiée. La vérification visuelle n’a pas pu être effectuée, aucun navigateur n’étant disponible dans la surface de contrôle de cette session.
+
 ## Corrections apportées
 
 - Les photos de catalogue au format portrait s’affichent au complet dans un cadre vertical ; les rendus restent contenus dans ce même cadre.
