@@ -6,6 +6,7 @@ const cartItems = document.querySelector('[data-cart-items]');
 const cartEmpty = document.querySelector('[data-cart-empty]');
 const cartFooter = document.querySelector('[data-cart-footer]');
 const countNode = document.querySelector('[data-cart-count]');
+const cartTrigger = document.querySelector('[data-open-cart]');
 const storageKey = 'ecrin-des-nuages-selection-v1';
 const maxQuantity = 20;
 const paymentLinks = window.ECRIN_CONFIG?.paymentLinks || {};
@@ -54,6 +55,8 @@ function renderCart(restoreFocus = null) {
   const count = entries.reduce((sum, [, quantity]) => sum + quantity, 0);
   countNode.textContent = String(count);
   countNode.setAttribute('aria-label', `${count} ${count === 1 ? 'pièce' : 'pièces'} dans la sélection`);
+  // Le bouton de l’en-tête n’apparaît que lorsque la sélection contient une pièce.
+  cartTrigger.hidden = count === 0;
   cartEmpty.hidden = count > 0;
   cartItems.hidden = count === 0;
   cartFooter.hidden = count === 0;
