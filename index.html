@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f4f2ec">
   <meta name="description" content="Écrin des Nuages — mobilier imaginé à partir des verres feuille de sauge des Tours Nuages de Nanterre. Un projet d’Anaïs Fernon, Clémence Bondon et Camille Sardet.">
   <title>Écrin des Nuages — Des fenêtres aux objets</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f4f2ec'/%3E%3Ctext x='8' y='49' font-family='Georgia,serif' font-size='49' fill='%2353634d'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <script src="config.js"></script>
   <script type="module" src="features/catalogue/frontend/catalogue.js"></script>
@@ -34,7 +35,7 @@
       </div>
       <figure class="hero-image">
         <img src="assets/photo-4.webp" alt="Deux tables Écrin des Nuages, une table haute et une table basse" fetchpriority="high">
-        <figcaption><span>01 / 04</span><span>Une architecture devenue mobilier</span></figcaption>
+        <figcaption><span>Mobilier Écrin des Nuages</span><span>Une architecture devenue mobilier</span></figcaption>
       </figure>
       <div class="hero-index" aria-hidden="true">EDN<br>2026</div>
     </section>
@@ -50,16 +51,16 @@
       </div>
       <div class="filters" role="group" aria-label="Filtrer les pièces de la collection">
         <div class="filter-types">
-          <button class="filter-button is-active" type="button" data-filter-type="all" aria-pressed="true">Tout voir <span>04</span></button>
-          <button class="filter-button" type="button" data-filter-type="basse" aria-pressed="false">Table basse <span>02</span></button>
-          <button class="filter-button" type="button" data-filter-type="haute" aria-pressed="false">Table haute <span>02</span></button>
+          <button class="filter-button is-active" type="button" data-filter-type="all" aria-pressed="true">Tout voir <span data-filter-count>04</span></button>
+          <button class="filter-button" type="button" data-filter-type="basse" aria-pressed="false">Table basse <span data-filter-count>02</span></button>
+          <button class="filter-button" type="button" data-filter-type="haute" aria-pressed="false">Table haute <span data-filter-count>02</span></button>
         </div>
         <label class="filter-color">Teinte
           <select data-filter-color aria-label="Filtrer par teinte"><option value="all">Toutes les teintes</option><option value="vert">Vert feuille</option><option value="bleu">Bleu ciel</option></select>
         </label>
       </div>
       <div class="product-grid" data-product-grid aria-live="polite"></div>
-      <div class="collection-foot"><span>01—04 · Pièces disponibles sur demande</span><span>Chaque verre porte ses propres traces du temps.</span></div>
+      <div class="collection-foot"><span data-results-count aria-live="polite">4 variantes affichées · prix sur demande</span><span>Chaque verre porte ses propres traces du temps.</span></div>
     </section>
 
     <section class="future-collection" aria-labelledby="future-title">
@@ -70,7 +71,7 @@
 
     <section class="story" id="projet" aria-labelledby="story-title">
       <div class="story-image">
-        <img src="assets/photo-6.webp" alt="Détail d’un verre feuille de sauge mis en valeur dans le dessin d’une table" loading="lazy">
+        <img src="assets/photo-6.webp" alt="Les tables Écrin des Nuages devant la façade des Tours Nuages" loading="lazy">
         <span class="image-label">Une forme dessinée par l’architecture</span>
       </div>
       <div class="story-copy">
@@ -106,10 +107,10 @@
 
     <section class="team section-shell" id="equipe" aria-labelledby="team-title">
       <div class="team-top"><div><p class="eyebrow">Trois pratiques réunies</p><h2 id="team-title">Penser, transformer,<br><em>faire ensemble.</em></h2></div><p>Le projet associe architecture, conseil en réemploi et design autour d’une même ressource patrimoniale.</p></div>
-      <figure class="team-photo"><img src="assets/photo-16.webp" alt="Anaïs Fernon, Clémence Bondon et Camille Sardet, créatrices d’Écrin des Nuages" loading="lazy"><figcaption>© Luc Bertrand</figcaption></figure>
+      <figure class="team-photo"><img src="assets/photo-16.webp" alt="Anaïs Fernon, Clémence Bondon et Camille Sardet dans le quartier des Tours Nuages" loading="lazy"><figcaption>© Luc Bertrand</figcaption></figure>
       <div class="team-names">
         <article><span>01 / Architecture & design</span><h3>Anaïs Fernon</h3><a href="mailto:af@anaisfernon.com">af@anaisfernon.com</a></article>
-        <article><span>02 / Architecture & réemploi</span><h3>Clémence Bondon</h3><a href="mailto:clemence@secondemain-architecture.fr">secondemain-architecture.fr</a></article>
+        <article><span>02 / Architecture & réemploi</span><h3>Clémence Bondon</h3><a href="mailto:clemence@secondemain-architecture.fr">Écrire à Clémence</a></article>
         <article><span>03 / Design</span><h3>Camille Sardet</h3><a href="mailto:sardet.camille@gmail.com">sardet.camille@gmail.com</a></article>
       </div>
     </section>
@@ -120,7 +121,7 @@
       <p class="contact-note">Prix et disponibilité sur demande</p>
     </section>
   </main>
-  <footer class="site-footer"><a class="footer-mark" href="#haut">ÉCRIN DES NUAGES.</a><span>Un projet d’Anaïs Fernon, Clémence Bondon & Camille Sardet</span><span>© Écrin des Nuages · Crédit photographique : Luc Bertrand</span><a href="#haut">Retour en haut ↑</a></footer>
+  <footer class="site-footer"><a class="footer-mark" href="#haut">ÉCRIN DES NUAGES.</a><span>Un projet d’Anaïs Fernon, Clémence Bondon & Camille Sardet</span><span>Photographies : Luc Bertrand · Collectif Feuille de Sauge</span><a href="#haut">Retour en haut ↑</a></footer>
 
   <dialog class="product-dialog" data-product-dialog aria-labelledby="dialog-title">
     <button class="dialog-close" type="button" data-close-product aria-label="Fermer la fiche">×</button>
@@ -148,6 +149,5 @@
     <div class="cart-empty" data-cart-empty><p>Votre sélection est encore vide.</p><a class="text-link" href="#collection" data-close-cart-link>Parcourir la collection <span aria-hidden="true">↘</span></a></div>
     <div class="cart-footer" data-cart-footer hidden><a class="button-dark quote-link" data-quote-link href="mailto:af@anaisfernon.com">Demander un devis <span aria-hidden="true">↗</span></a><p class="stripe-note" data-stripe-note>La demande de devis ne vous engage pas.</p></div>
   </dialog>
-  <div class="dialog-scrim" data-scrim hidden></div>
 </body>
 </html>

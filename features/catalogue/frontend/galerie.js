@@ -1,3 +1,5 @@
+import { syncDialogState } from '../../frontend/dialog-state.js';
+
 const photos = [
   ['assets/photo-1.webp','Rencontre autour des tables et des verres des Tours Nuages','© Luc Bertrand'],
   ['assets/photo-2.webp','Table haute et verre feuille de sauge, en bleu ciel','© Luc Bertrand'],
@@ -51,8 +53,7 @@ function showPhoto(index) {
 function openGallery(index = 0) {
   showPhoto(index);
   galleryDialog.showModal();
-  document.body.classList.add('dialog-open');
-  document.querySelector('[data-scrim]').hidden = false;
+  syncDialogState();
   document.querySelector('[data-gallery-close]').focus();
 }
 function closeGallery() { galleryDialog.close(); }
@@ -67,8 +68,7 @@ document.querySelector('[data-gallery-close]').addEventListener('click', closeGa
 document.querySelector('[data-photo-prev]').addEventListener('click', () => showPhoto(photoIndex - 1));
 document.querySelector('[data-photo-next]').addEventListener('click', () => showPhoto(photoIndex + 1));
 galleryDialog.addEventListener('close', () => {
-  document.body.classList.remove('dialog-open');
-  if (!document.querySelector('[data-product-dialog]').open && !document.querySelector('[data-cart-dialog]').open) document.querySelector('[data-scrim]').hidden = true;
+  syncDialogState();
 });
 galleryDialog.addEventListener('click', event => {
   if (event.target !== galleryDialog) return;
@@ -91,8 +91,7 @@ function openStudy(index) {
   const [src, title, color, status] = studies[index];
   document.querySelector('[data-study-dialog-content]').innerHTML = `<img src="${src}" alt="Dessin de collection : ${title}, ${color}"><div><p class="eyebrow">La collection se dessine</p><h3>${title}<br><em>${color}</em></h3><p>${status}</p></div>`;
   studyDialog.showModal();
-  document.body.classList.add('dialog-open');
-  document.querySelector('[data-scrim]').hidden = false;
+  syncDialogState();
   document.querySelector('[data-study-close]').focus();
 }
 studyGrid.addEventListener('click', event => { const card=event.target.closest('[data-study-index]'); if (card) openStudy(Number(card.dataset.studyIndex)); });
@@ -103,6 +102,5 @@ studyDialog.addEventListener('click', event => {
   if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) studyDialog.close();
 });
 studyDialog.addEventListener('close', () => {
-  document.body.classList.remove('dialog-open');
-  if (!document.querySelector('[data-product-dialog]').open && !document.querySelector('[data-cart-dialog]').open && !galleryDialog.open) document.querySelector('[data-scrim]').hidden = true;
+  syncDialogState();
 });

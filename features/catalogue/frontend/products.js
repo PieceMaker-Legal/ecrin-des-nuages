@@ -1,0 +1,61 @@
+export const products = [
+  {
+    id: 'table-basse-vert',
+    kind: 'basse',
+    kindLabel: 'Table basse',
+    color: 'vert',
+    colorLabel: 'Vert feuille',
+    image: 'assets/photo-3.webp',
+    alt: 'Table basse Écrin des Nuages, verre feuille de sauge et structure vert feuille',
+    gallery: ['assets/photo-3.webp', 'assets/table-basse.webp', 'assets/photo-7.webp'],
+    galleryAlt: ['Table basse vert feuille', 'Vue de la table basse', 'Détail du verre feuille de sauge'],
+    description: 'Une table basse qui révèle le contour organique du verre récupéré. Chaque pièce compose avec les marques et les nuances de son fragment architectural.',
+    dimensions: 'L 129,7 × l 110,9 × h 40,2 cm',
+    material: 'Verre trempé récupéré et structure en bois',
+    caption: ''
+  },
+  {
+    id: 'table-basse-bleu',
+    kind: 'basse',
+    kindLabel: 'Table basse',
+    color: 'bleu',
+    colorLabel: 'Bleu ciel',
+    image: 'assets/nuage-render-000.webp',
+    alt: 'Vue de collection de la table basse Écrin des Nuages en teinte bleu ciel',
+    gallery: ['assets/nuage-render-000.webp', 'assets/photo-4.webp', 'assets/photo-5.webp'],
+    galleryAlt: ['Vue de collection de la table basse bleu ciel', 'Deux tables Écrin des Nuages réunies', 'Deux tables Écrin des Nuages réunies'],
+    description: 'La silhouette de la table basse se décline en bleu ciel. Le visuel principal est une vue de collection ; les photographies complémentaires présentent les tables dans leur ensemble.',
+    dimensions: 'L 129,7 × l 110,9 × h 40,2 cm',
+    material: 'Verre trempé récupéré et structure en bois',
+    caption: 'Vue de collection'
+  },
+  {
+    id: 'table-haute-vert',
+    kind: 'haute',
+    kindLabel: 'Table haute',
+    color: 'vert',
+    colorLabel: 'Vert feuille',
+    image: 'assets/nuage-render-001.webp',
+    alt: 'Vue de collection de la table haute Écrin des Nuages en teinte vert feuille',
+    gallery: ['assets/nuage-render-001.webp', 'assets/photo-4.webp', 'assets/photo-15.webp'],
+    galleryAlt: ['Vue de collection de la table haute vert feuille', 'Deux tables Écrin des Nuages réunies', 'Mobilier Écrin des Nuages en situation'],
+    description: 'La table haute reprend le dessin du verre « feuille de sauge ». Le visuel principal est une vue de collection ; les photographies complémentaires montrent le mobilier en situation.',
+    dimensions: 'L 124 × l 113 × h 75 cm',
+    caption: 'Vue de collection'
+  },
+  {
+    id: 'table-haute-bleu',
+    kind: 'haute',
+    kindLabel: 'Table haute',
+    color: 'bleu',
+    colorLabel: 'Bleu ciel',
+    image: 'assets/photo-2.webp',
+    alt: 'Table haute Écrin des Nuages en bleu ciel, verre feuille de sauge et structure en bois',
+    gallery: ['assets/photo-2.webp', 'assets/photo-4.webp', 'assets/photo-8.webp'],
+    galleryAlt: ['Table haute bleu ciel', 'Deux tables Écrin des Nuages réunies', 'Détail du mobilier'],
+    description: 'La première table autoproduite, présentée à Paris Design Week Factory en 2025. Sa structure accueille le verre à fleur et reprend le dessin des anciennes fixations.',
+    dimensions: 'L 124 × l 113 × h 75 cm',
+    material: 'Bois de hêtre huilé teinté bleu ciel, verre trempé et platines aluminium',
+    caption: ''
+  }
+];

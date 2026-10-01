@@ -14,6 +14,8 @@ Publier le contenu du dossier `ecrin-des-nuages` depuis la branche et le répert
 
 Le paiement en ligne n’est pas activé. La sélection prépare une demande de prix et de disponibilité par courriel ; elle ne représente pas une commande.
 
+La sélection accepte jusqu’à 20 exemplaires par variante. Les entrées de stockage inconnues ou hors limites sont ignorées.
+
 Pour activer un paiement, créer d’abord dans Stripe un Payment Link de production pour chaque variante, avec le prix et les conditions validés. Dans `config.js`, remplacer la valeur `null` correspondante par le lien `https://buy.stripe.com/...` :
 
 ```js
