@@ -45,7 +45,7 @@ function safePaymentLink(id) {
 function selectedPieces() {
   return Object.entries(cart).map(([id, quantity]) => {
     const product = getProduct(id);
-    return `${product.kindLabel} — ${product.colorLabel} × ${quantity}`;
+    return `${product.kindLabel} — ${product.colorLabel} · ${product.format} × ${quantity}`;
   }).join('\n');
 }
 
@@ -61,12 +61,12 @@ function renderCart(restoreFocus = null) {
   cartItems.innerHTML = entries.map(([id, quantity]) => {
     const product = getProduct(id);
     const paymentLink = safePaymentLink(id);
-    const productName = `${product.kindLabel.toLowerCase()} ${product.colorLabel.toLowerCase()}`;
+    const productName = `${product.kindLabel.toLowerCase()} ${product.colorLabel.toLowerCase()} ${product.format}`;
     return `<article class="cart-row">
       <img src="${product.image}" alt="${product.alt}">
       <div class="cart-row-content">
         <h3>${product.kindLabel}</h3>
-        <p>${product.colorLabel} · Prix sur demande</p>
+        <p>${product.colorLabel} · ${product.format} · Prix sur demande</p>
         <div class="cart-row-actions">
           <div class="quantity-control" role="group" aria-label="Quantité : ${productName}">
             <button type="button" data-quantity="minus" data-id="${id}" aria-label="Retirer une ${productName}">−</button>

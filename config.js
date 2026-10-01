@@ -7,6 +7,12 @@ window.ECRIN_CONFIG = {
   inquiryRecipient: 'sardet.camille@gmail.com',
   paymentLinks: {
     'table-basse-vert': null,
-    'table-haute-bleu': null
+    'table-basse-bleu': null,
+    'table-basse-bleu-2': null,
+    'table-haute-bleu': null,
+    'table-haute-vert': null,
+    'table-haute-bleu-2': null,
+    'table-haute-vert-2': null,
+    'table-haute-bleu-4': null
   }
 };

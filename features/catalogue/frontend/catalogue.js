@@ -22,23 +22,24 @@ function renderProducts() {
     <article class="product-card">
       <div class="product-image${item.caption ? ' product-image-render' : ''}">
         <img src="${item.image}" alt="${item.alt}" loading="lazy">
-        <span class="product-tag">${item.kindLabel} · ${item.colorLabel}</span>
-        <button class="product-open" type="button" data-product-id="${item.id}" aria-label="Voir la fiche : ${item.kindLabel}, ${item.colorLabel}">Voir la fiche</button>
+        <span class="product-tag">${item.kindLabel} · ${item.format}</span>
+        <button class="product-open" type="button" data-product-id="${item.id}" aria-label="Voir la fiche : ${item.kindLabel}, ${item.colorLabel}, ${item.format}">Voir la fiche</button>
       </div>
       <div class="product-caption">
-        <div><h3 class="product-title">${item.kindLabel} <span aria-hidden="true">—</span> ${item.colorLabel}</h3><p class="product-meta">Verre récupéré · Nanterre</p>${item.caption ? `<p class="product-meta">${item.caption}</p>` : ''}<div class="product-colors" aria-label="Teinte ${item.colorLabel}"><span class="swatch ${item.color}" aria-hidden="true"></span></div></div>
+        <div><h3 class="product-title">${item.kindLabel} <span aria-hidden="true">—</span> ${item.colorLabel}</h3><p class="product-meta">${[item.format, item.caption || 'Verre récupéré · Nanterre'].join(' · ')}</p><div class="product-colors" aria-label="Teinte ${item.colorLabel}"><span class="swatch ${item.color}" aria-hidden="true"></span></div></div>
         <span class="product-price">Sur demande</span>
       </div>
-    </article>`).join('') : '<p class="collection-empty">Cette association n’est pas proposée. Les pièces disponibles sont la table basse vert feuille et la table haute bleu ciel.</p>';
+    </article>`).join('') : '<p class="collection-empty">Aucune pièce pour ce filtre.</p>';
 }
 
 function updateProductContent(product) {
   currentProduct = product;
   galleryIndex = 0;
-  document.querySelector('[data-dialog-title]').textContent = `${product.kindLabel} · ${product.colorLabel}`;
+  document.querySelector('[data-dialog-title]').textContent = `${product.kindLabel} · ${product.colorLabel} · ${product.format}`;
   document.querySelector('[data-dialog-kicker]').textContent = `Écrin des Nuages · ${product.kindLabel}`;
   document.querySelector('[data-dialog-description]').textContent = product.description;
-  const specs = [['Dimensions', product.dimensions]];
+  const specs = [['Verres', product.format]];
+  if (product.dimensions) specs.push(['Dimensions', product.dimensions]);
   if (product.material) specs.push(['Matériaux', product.material]);
   specs.push(['Prix', 'Sur demande']);
   document.querySelector('[data-dialog-specs]').innerHTML = specs.map(([key,value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`).join('');
@@ -46,15 +47,15 @@ function updateProductContent(product) {
   const variants = document.querySelector('[data-dialog-variants]');
   variants.closest('fieldset').hidden = colors.length < 2;
   if (renderedVariantKind !== product.kind) {
-    variants.innerHTML = colors.map(item => `<label class="variant-option"><input type="radio" name="product-color" value="${item.id}"><span class="swatch ${item.color}" aria-hidden="true"></span>${item.colorLabel}</label>`).join('');
+    variants.innerHTML = colors.map(item => `<label class="variant-option"><input type="radio" name="product-color" value="${item.id}"><span class="swatch ${item.color}" aria-hidden="true"></span>${item.colorLabel} · ${item.format}</label>`).join('');
     renderedVariantKind = product.kind;
   }
   variants.querySelectorAll('input').forEach(input => { input.checked = input.value === product.id; });
   setGalleryImage();
 }
 
-function showProduct(product) {
-  productReturnFocus = document.activeElement;
+function showProduct(product, returnFocus = document.activeElement) {
+  productReturnFocus = returnFocus?.isConnected ? returnFocus : document.activeElement;
   updateProductContent(product);
   dialog.showModal();
   syncDialogState();
@@ -102,5 +103,9 @@ document.querySelector('[data-add-to-cart]').addEventListener('click', () => {
   document.querySelector('[data-cart-dialog]').showModal();
   syncDialogState();
   document.querySelector('[data-close-cart]').focus();
+});
+window.addEventListener('ecrin:open-product', event => {
+  const product = products.find(item => item.id === event.detail?.productId);
+  if (product) showProduct(product, event.detail.returnFocus);
 });
 renderProducts();

@@ -2698,7 +2698,8 @@ figure,p,h1,h2,h3 {
     background:#fff;
 }
 .product-image-render img {
-    object-fit:cover;
+    object-fit:contain;
+    padding:22px;
 }
 
 .menu-toggle {

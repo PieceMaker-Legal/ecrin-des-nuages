@@ -22,12 +22,12 @@ const photos = [
   ['assets/table-basse-collectif.webp','Table basse Écrin des Nuages — photographie du Collectif Feuille de Sauge','© Collectif Feuille de Sauge',[]]
 ];
 const studies = [
-  ['assets/nuage-render-000.webp','Table basse · 1 verre','Bleu ciel','Dessin · pas de devis'],
-  ['assets/nuage-render-001.webp','Table haute · 1 verre','Vert feuille','Dessin · pas de devis'],
-  ['assets/nuage-render-002.webp','Table basse · 2 verres','Bleu ciel','Étude en cours · pas de devis'],
-  ['assets/nuage-render-003.webp','Table haute · 2 verres','Bleu ciel','Étude en cours · pas de devis'],
-  ['assets/nuage-render-004.webp','Table haute · 2 verres','Vert feuille','Étude en cours · pas de devis'],
-  ['assets/nuage-render-005.webp','Table haute · 4 verres','Bleu ciel','Étude en cours · pas de devis']
+  ['assets/nuage-render-000.webp','Table basse · 1 verre','Bleu ciel','table-basse-bleu'],
+  ['assets/nuage-render-001.webp','Table haute · 1 verre','Vert feuille','table-haute-vert'],
+  ['assets/nuage-render-002.webp','Table basse · 2 verres','Bleu ciel','table-basse-bleu-2'],
+  ['assets/nuage-render-003.webp','Table haute · 2 verres','Bleu ciel','table-haute-bleu-2'],
+  ['assets/nuage-render-004.webp','Table haute · 2 verres','Vert feuille','table-haute-vert-2'],
+  ['assets/nuage-render-005.webp','Table haute · 4 verres','Bleu ciel','table-haute-bleu-4']
 ];
 
 const previewGrid = document.querySelector('[data-photo-previews]');
@@ -105,18 +105,16 @@ galleryDialog.addEventListener('keydown', event => {
 
 const studyGrid = document.querySelector('[data-study-grid]');
 const studyDialog = document.querySelector('[data-study-dialog]');
-studyGrid.innerHTML = studies.map(([src, title, color, status], index) => `
-  <button class="study-card study-card-in-progress" type="button" data-study-index="${index}" aria-label="Voir l’étude : ${title}, ${color}. ${status}">
-    <img src="${src}" alt="" loading="lazy"><span class="study-name">${title}</span><span class="study-color">${color}</span><span class="study-status">${status}</span>
+studyGrid.innerHTML = studies.map(([src, title, color, productId], index) => `
+  <button class="study-card" type="button" data-study-index="${index}" data-open-catalogue="${productId}" aria-label="Voir la fiche : ${title}, ${color}.">
+    <img src="${src}" alt="" loading="lazy"><span class="study-name">${title}</span><span class="study-color">${color}</span><span class="study-status">Dans le catalogue</span>
   </button>`).join('');
-function openStudy(index) {
-  const [src, title, color, status] = studies[index];
-  document.querySelector('[data-study-dialog-content]').innerHTML = `<img src="${src}" alt="Dessin : ${title}, ${color}"><div><p class="eyebrow">La collection se dessine</p><h3>${title}<br><em>${color}</em></h3><p>${status}</p></div>`;
-  studyDialog.showModal();
-  syncDialogState();
-  document.querySelector('[data-study-close]').focus();
-}
-studyGrid.addEventListener('click', event => { const card=event.target.closest('[data-study-index]'); if (card) openStudy(Number(card.dataset.studyIndex)); });
+studyGrid.addEventListener('click', event => {
+  const card = event.target.closest('[data-study-index]');
+  if (!card) return;
+  const productId = card.dataset.openCatalogue;
+  window.dispatchEvent(new CustomEvent('ecrin:open-product', { detail: { productId, returnFocus: card } }));
+});
 document.querySelector('[data-study-close]').addEventListener('click', () => studyDialog.close());
 studyDialog.addEventListener('click', event => {
   if (event.target !== studyDialog) return;
